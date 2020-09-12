@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, Validators } from '@angular/forms';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { SimpleVsCompoundInterestCalculatorService } from '../../services/simple-vs-compound-interest-calculator.service';
 
 @Component({
   selector: 'app-simple-vs-compound-interest',
@@ -14,7 +15,8 @@ export class SimpleVsCompoundInterestComponent implements OnInit {
 
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private calculatorService: SimpleVsCompoundInterestCalculatorService
   ) { }
 
 
