@@ -4,6 +4,8 @@ import { ModuleWithProviders } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { Optional } from '@angular/core';
 import { SkipSelf } from '@angular/core';
+import { FormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
 
 /* Component Imports */
 import { SimpleVsCompoundInterestComponent } from './components/simple-vs-compound-interest/simple-vs-compound-interest.component';
@@ -18,6 +20,7 @@ import { SimpleVsCompoundInterestRoutingModule } from './simple-vs-compound-inte
 @NgModule({
     imports: [
         CommonModule,
+        ReactiveFormsModule,
         SimpleVsCompoundInterestRoutingModule
     ],
     declarations: [

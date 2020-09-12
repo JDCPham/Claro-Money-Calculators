@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AbstractControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-simple-vs-compound-interest',
@@ -7,9 +9,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SimpleVsCompoundInterestComponent implements OnInit {
 
-  constructor() { }
+  // Form
+  private form: FormGroup;
+
+  constructor(
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit() {
+    this.form = this.buildForm();
+  }
+
+  private buildForm(): FormGroup {
+    return this.formBuilder.group({
+      existingSavings: [{ value: 0, disabled: false }, [Validators.required]],
+      monthlyDeposit: [{ value: 0, disabled: false }, [Validators.required]]
+    })
+  }
+
+  // Getters & Setters
+  get existingSavings(): AbstractControl {
+    return this.form.get('existingSavings');
+  }
+
+  get monthlyDeposit(): AbstractControl {
+    return this.form.get('monthlyDeposit')
   }
 
 }

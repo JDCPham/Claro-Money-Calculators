@@ -1,14 +1,31 @@
 <p>How much can you earn with compound interest?</p>
 
+<form [formGroup]="form">
 
-
-
-<div class="form-group">
-    <label>Existing Savings</label>
-    <div class="input-group ">
-        <div class="input-group-prepend">
-            <span class="input-group-text">£</span>
+    <!-- User Input: Existing Savings -->
+    <div class="form-group">
+        <label>Existing Savings</label>
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">£</span>
+            </div>
+            <input type="number" class="form-control" formControlName="existingSavings">
         </div>
-        <input type="number" class="form-control">
     </div>
-</div>
+
+    <!-- User Input: Monthly Deposit -->
+    <div class="form-group">
+        <label>Monthly Deposit</label>
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">£</span>
+            </div>
+            <input type="number" class="form-control" formControlName="monthlyDeposit">
+        </div>
+    </div>
+
+    <!-- Testing -->
+    <p>Existing Savings: {{existingSavings.value}}</p>
+    <p>Monthly Deposit: {{monthlyDeposit.value}}</p>
+
+</form>
