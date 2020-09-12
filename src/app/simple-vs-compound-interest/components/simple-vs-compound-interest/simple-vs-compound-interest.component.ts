@@ -12,20 +12,28 @@ export class SimpleVsCompoundInterestComponent implements OnInit {
   // Form
   private form: FormGroup;
 
+
   constructor(
     private formBuilder: FormBuilder
   ) { }
+
 
   ngOnInit() {
     this.form = this.buildForm();
   }
 
+
   private buildForm(): FormGroup {
+
     return this.formBuilder.group({
       existingSavings: [{ value: 0, disabled: false }, [Validators.required]],
-      monthlyDeposit: [{ value: 0, disabled: false }, [Validators.required]]
+      monthlyDeposit: [{ value: 0, disabled: false }, [Validators.required]],
+      interestRate: [{ value: 5, disabled: false }, [Validators.required]],
+      savingsPeriod: [{ value: 0, disabled: false }, [Validators.required]]
     })
+
   }
+
 
   // Getters & Setters
   get existingSavings(): AbstractControl {
@@ -34,6 +42,14 @@ export class SimpleVsCompoundInterestComponent implements OnInit {
 
   get monthlyDeposit(): AbstractControl {
     return this.form.get('monthlyDeposit')
+  }
+
+  get interestRate(): AbstractControl {
+    return this.form.get('interestRate')
+  }
+
+  get savingsPeriod(): AbstractControl {
+    return this.form.get('savingsPeriod');
   }
 
 }

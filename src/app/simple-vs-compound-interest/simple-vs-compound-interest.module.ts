@@ -7,6 +7,9 @@ import { SkipSelf } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
 
+/* Material */
+import { MatSliderModule } from '@angular/material/slider';
+
 /* Component Imports */
 import { SimpleVsCompoundInterestComponent } from './components/simple-vs-compound-interest/simple-vs-compound-interest.component';
 
@@ -21,6 +24,7 @@ import { SimpleVsCompoundInterestRoutingModule } from './simple-vs-compound-inte
     imports: [
         CommonModule,
         ReactiveFormsModule,
+        MatSliderModule,
         SimpleVsCompoundInterestRoutingModule
     ],
     declarations: [
