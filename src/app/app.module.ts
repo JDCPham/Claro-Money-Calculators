@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Material
 import { MatSliderModule } from '@angular/material/slider';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MatSliderModule } from '@angular/material/slider';
     MatSliderModule,
     ReactiveFormsModule,
     SimpleVsCompoundInterestModule.forRoot(),
+    AlertModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

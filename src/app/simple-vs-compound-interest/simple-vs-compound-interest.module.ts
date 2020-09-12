@@ -6,6 +6,7 @@ import { Optional } from '@angular/core';
 import { SkipSelf } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 /* Material */
 import { MatSliderModule } from '@angular/material/slider';
@@ -25,6 +26,7 @@ import { SimpleVsCompoundInterestRoutingModule } from './simple-vs-compound-inte
         CommonModule,
         ReactiveFormsModule,
         MatSliderModule,
+        AlertModule,
         SimpleVsCompoundInterestRoutingModule
     ],
     declarations: [

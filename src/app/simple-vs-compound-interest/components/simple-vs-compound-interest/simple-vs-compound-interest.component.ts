@@ -41,20 +41,10 @@ export class SimpleVsCompoundInterestComponent implements OnInit {
   private setEventListeners(): void {
     this.setInterestRateEventListener();
     this.setSavingsPeriodEventListener();
-    this.setExistingSavingsEventListener();
-    this.setMonthlyDepositEventListener();
   }
 
-  private setMonthlyDepositEventListener(): void {
-    this.form.get('monthlyDeposit').valueChanges.subscribe(value => {
-      this.calculatorService.calculateInterest(this.existingSavings, this.monthlyDeposit);
-    })
-  }
-
-  private setExistingSavingsEventListener(): void {
-    this.form.get('existingSavings').valueChanges.subscribe(value => {
-      this.calculatorService.calculateInterest(this.existingSavings, this.monthlyDeposit)
-    })
+  public calculateInterest(): void {
+    this.calculatorService.calculateInterest(this.existingSavings, this.monthlyDeposit);
   }
 
   private setInterestRateEventListener(): void {
@@ -79,5 +69,31 @@ export class SimpleVsCompoundInterestComponent implements OnInit {
   get monthlyDeposit(): any {
     return this.form.get('monthlyDeposit').value;
   }
+
+  get compoundInterestEarned(): any {
+    try { return this.calculatorService.interestEarned.compound.total; }
+    catch (error) { return error; }
+  }
+
+  get simpleInterestEarned(): any {
+    try { return this.calculatorService.interestEarned.simple.total; }
+    catch (error) { return error; }
+  }
+
+  get compoundTotalAmount(): any {
+    try { return this.calculatorService.totalAmount.compound.rounded; }
+    catch (error) { return error; }
+  }
+
+  get simpleTotalAmount(): any {
+    try { return this.calculatorService.totalAmount.simple.rounded; }
+    catch (error) { return error; }
+  }
+
+  get resultsExist(): boolean {
+    return this.calculatorService.resultsExist;
+  }
+
+
 
 }
