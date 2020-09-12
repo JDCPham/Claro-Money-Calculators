@@ -22,6 +22,7 @@ export class SimpleVsCompoundInterestComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.buildForm();
+    this.setEventListeners();
   }
 
 
@@ -30,28 +31,53 @@ export class SimpleVsCompoundInterestComponent implements OnInit {
     return this.formBuilder.group({
       existingSavings: [{ value: 0, disabled: false }, [Validators.required]],
       monthlyDeposit: [{ value: 0, disabled: false }, [Validators.required]],
-      interestRate: [{ value: 5, disabled: false }, [Validators.required]],
-      savingsPeriod: [{ value: 0, disabled: false }, [Validators.required]]
+      interestRate: [{ value: this.calculatorService.rate.annually * 100, disabled: false }, [Validators.required]],
+      savingsPeriod: [{ value: this.calculatorService.timePeriod.years, disabled: false }, [Validators.required]]
     })
 
   }
 
 
+  private setEventListeners(): void {
+    this.setInterestRateEventListener();
+    this.setSavingsPeriodEventListener();
+    this.setExistingSavingsEventListener();
+    this.setMonthlyDepositEventListener();
+  }
+
+  private setMonthlyDepositEventListener(): void {
+    this.form.get('monthlyDeposit').valueChanges.subscribe(value => {
+      this.calculatorService.calculateInterest(this.existingSavings, this.monthlyDeposit);
+    })
+  }
+
+  private setExistingSavingsEventListener(): void {
+    this.form.get('existingSavings').valueChanges.subscribe(value => {
+      this.calculatorService.calculateInterest(this.existingSavings, this.monthlyDeposit)
+    })
+  }
+
+  private setInterestRateEventListener(): void {
+    this.form.get('interestRate').valueChanges.subscribe(value => {
+      this.calculatorService.updateInterestRate(value);
+      this.calculatorService.calculateInterest(this.existingSavings, this.monthlyDeposit)
+    })
+  }
+
+  private setSavingsPeriodEventListener(): void {
+    this.form.get('savingsPeriod').valueChanges.subscribe(value => {
+      this.calculatorService.updateTimePeriod(value);
+      this.calculatorService.calculateInterest(this.existingSavings, this.monthlyDeposit)
+    })
+  }
+
   // Getters & Setters
-  get existingSavings(): AbstractControl {
-    return this.form.get('existingSavings');
+  get existingSavings(): any {
+    return this.form.get('existingSavings').value;
   }
 
-  get monthlyDeposit(): AbstractControl {
-    return this.form.get('monthlyDeposit')
-  }
-
-  get interestRate(): AbstractControl {
-    return this.form.get('interestRate')
-  }
-
-  get savingsPeriod(): AbstractControl {
-    return this.form.get('savingsPeriod');
+  get monthlyDeposit(): any {
+    return this.form.get('monthlyDeposit').value;
   }
 
 }

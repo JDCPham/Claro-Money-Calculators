@@ -16,13 +16,13 @@
     <!-- User Input: Interest Rate -->
     <div class="form-group">
         <label>Interest Rate (AER)</label>
-        <mat-slider min="0" max="10" step="1" value="1" thumbLabel tickInterval="1" formControlName="interestRate" style="width: 100%"></mat-slider>
+        <mat-slider min="0" max="10" step="0.01" value="1" thumbLabel  formControlName="interestRate" style="width: 100%"></mat-slider>
     </div>
 
      <!-- User Input: Savings Period -->
      <div class="form-group">
         <label>Savings Period (years)</label>
-        <mat-slider min="1" max="80" step="1" value="1" thumbLabel tickInterval="1" formControlName="savingsPeriod" style="width: 100%"></mat-slider>
+        <mat-slider min="1" max="80" step="1" value="1" thumbLabel formControlName="savingsPeriod" style="width: 100%"></mat-slider>
     </div>
 
 
@@ -37,10 +37,5 @@
         </div>
     </div>
 
-    <!-- Testing -->
-    <p>Existing Savings: {{existingSavings.value}}</p>
-    <p>Monthly Deposit: {{monthlyDeposit.value}}</p>
-    <p>Interest Rate: {{interestRate.value}}</p>
-    <p>Savings Period: {{savingsPeriod.value}}</p>
 
 </form>
