@@ -1,0 +1,1 @@
+export * from './simple-vs-compound-interest/simple-vs-compound-interest.component';
