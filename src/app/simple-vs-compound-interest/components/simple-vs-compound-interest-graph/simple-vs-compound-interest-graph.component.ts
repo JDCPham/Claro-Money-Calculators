@@ -1,6 +1,7 @@
 import { EventEmitter } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { SimpleCompoundInterestResult } from '../../models';
+import { SimpleVsCompoundInterestCalculatorService } from '../../services';
 
 @Component({
     selector: 'simple-vs-compound-interest-graph',
@@ -14,20 +15,29 @@ export class SimpleVsCompoundInterestGraphComponent implements OnInit {
     @Input()
     public updated: EventEmitter<SimpleCompoundInterestResult>;
 
-    constructor() { }
+    constructor(private calculatorService: SimpleVsCompoundInterestCalculatorService) { }
 
     ngOnInit() {
         this.setChartOptions();
         this.setDataUpdateEventListener();
     }
 
+    public onChartInit(event: any): void {
+        this.updateChartData()
+    }
+
     private setDataUpdateEventListener(): void {
-        this.updated.subscribe((value: SimpleCompoundInterestResult) => {
-            const compoundInterestAmountData: Array<[number, number]> = value.detailed.map(result => [result.month, result.amount.compound.rounded]);
-            const simpleInterestAmountData: Array<[number, number]> = value.detailed.map(result => [result.month, result.amount.simple.rounded]);
-            this.setChartOptions(compoundInterestAmountData, simpleInterestAmountData)
+        this.updated.subscribe(() => {
+            this.updateChartData();
             
         })
+    }
+
+    private updateChartData(): void {
+        const data: SimpleCompoundInterestResult = this.calculatorService.results;
+        const compoundInterestAmountData: Array<[number, number]> = data.detailed.map(result => [result.month, result.amount.compound.rounded]);
+        const simpleInterestAmountData: Array<[number, number]> = data.detailed.map(result => [result.month, result.amount.simple.rounded]);
+        this.setChartOptions(compoundInterestAmountData, simpleInterestAmountData)
     }
 
     private setChartOptions(

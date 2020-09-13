@@ -28,13 +28,15 @@ export class SimpleVsCompoundInterestComponent implements OnInit {
   ngOnInit() {
     this.form = this.buildForm();
     this.setEventListeners();
+    this.calculateInterest();
+    this.updated.emit()
   }
 
 
   private buildForm(): FormGroup {
 
     return this.formBuilder.group({
-      existingSavings: [{ value: 0, disabled: false }, [Validators.required]],
+      existingSavings: [{ value: 100, disabled: false }, [Validators.required]],
       monthlyDeposit: [{ value: 0, disabled: false }, [Validators.required]],
       interestRate: [{ value: this.calculatorService.input.interest.annually * 100, disabled: false }, [Validators.required]],
       savingsPeriod: [{ value: this.calculatorService.input.savingsPeriod.years, disabled: false }, [Validators.required]]
@@ -50,7 +52,7 @@ export class SimpleVsCompoundInterestComponent implements OnInit {
 
   public calculateInterest(): void {
     this.calculatorService.calculateInterest(this.existingSavings, this.monthlyDeposit);
-    this.updated.emit(this.data);
+    this.updated.emit();
   }
 
   private setInterestRateEventListener(): void {

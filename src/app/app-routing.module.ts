@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { CompoundInterestComponent } from './compound-interest';
+import { HomeComponent } from './home';
+import { SimpleVsCompoundInterestComponent } from './simple-vs-compound-interest';
 
 
 const routes: Routes = [
 
-  { path: 'simple-vs-compound-interest', redirectTo: 'simple-vs-compound-interest', pathMatch: 'full'}
+  
+  { path: 'calculator/simple-compound', component: SimpleVsCompoundInterestComponent, pathMatch: 'full'},
+  { path: 'calculator/compound', component: CompoundInterestComponent, pathMatch: 'full'},
+  { path: '**', component: HomeComponent, pathMatch: 'full' }
 
 ];
 

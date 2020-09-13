@@ -1,1 +1,64 @@
-<p>compound-interest works!</p>
+<p>How much can you earn with compound interest?</p>
+
+<form [formGroup]="form">
+
+    <!-- User Input: Existing Savings -->
+    <div class="form-group">
+        <label>Existing Savings</label>
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">£</span>
+            </div>
+            <input type="number" class="form-control" formControlName="existingSavings" (blur)="calculateInterest()">
+        </div>
+    </div>
+
+    <!-- User Input: Interest Rate -->
+    <div class="form-group">
+        <label>Interest Rate (AER)</label>
+        <mat-slider min="0" max="10" step="0.01" value="1" thumbLabel formControlName="interestRate"
+            style="width: 100%"></mat-slider>
+    </div>
+
+    <!-- User Input: Interest Rate Buttons -->
+    <div class="d-flex mb-5">
+        <button type="button" class="btn btn-primary mr-1" (click)="setInterestRate(1)">Low</button>
+        <button type="button" class="btn btn-primary mx-1" (click)="setInterestRate(3)">Medium</button>
+        <button type="button" class="btn btn-primary ml-1" (click)="setInterestRate(5)">High</button>
+    </div>
+
+    <!-- User Input: Savings Period -->
+    <div class="form-group">
+        <label>Savings Period (years)</label>
+        <mat-slider min="1" max="80" step="1" value="1" thumbLabel formControlName="savingsPeriod" style="width: 100%">
+        </mat-slider>
+    </div>
+
+
+    <!-- User Input: Monthly Deposit -->
+    <div class="form-group">
+        <label>Monthly Deposit</label>
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">£</span>
+            </div>
+            <input type="number" class="form-control" formControlName="monthlyDeposit" (blur)="calculateInterest()">
+        </div>
+    </div>
+
+    <!-- Final Results -->
+    <div *ngIf="resultsExist">
+        <alert type="success">
+            <strong>Compound Interest Earned: </strong>{{compoundInterestEarned}}
+        </alert>
+        <alert type="info">
+            <strong>Compound Total Value: </strong>{{compoundTotalAmount}}
+        </alert>
+
+    </div>
+
+    <!-- Graph -->
+    <compound-interest-graph [updated]="updated"></compound-interest-graph>
+
+
+</form>

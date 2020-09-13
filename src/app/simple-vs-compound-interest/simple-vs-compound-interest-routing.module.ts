@@ -7,8 +7,7 @@ import { SimpleVsCompoundInterestComponent } from './components';
   imports: [
     RouterModule.forChild([
 
-        {  path: 'simple-vs-compound-interest', redirectTo: '' },
-        {  path: '', component: SimpleVsCompoundInterestComponent }
+        {  path: 'simple-vs-compound-interest', component: SimpleVsCompoundInterestComponent }
 
     ]),
   ],
