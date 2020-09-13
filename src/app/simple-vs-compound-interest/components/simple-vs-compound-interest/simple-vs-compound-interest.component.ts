@@ -13,7 +13,7 @@ import { SimpleVsCompoundInterestCalculatorService } from '../../services/simple
 export class SimpleVsCompoundInterestComponent implements OnInit {
 
   // Form.
-  private form: FormGroup;
+  public form: FormGroup;
 
   // Event Emitters.
   public updated: EventEmitter<SimpleCompoundInterestResult> = new EventEmitter<SimpleCompoundInterestResult>();

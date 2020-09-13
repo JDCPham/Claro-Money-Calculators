@@ -14,10 +14,14 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 
 // ECharts
 import { NgxEchartsModule } from 'ngx-echarts';
+import { CompoundInterestComponent } from './compound-interest/components/compound-interest/compound-interest.component';
+import { CompoundInterestGraphComponent } from './compound-interest/components/compound-interest-graph/compound-interest-graph.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CompoundInterestComponent,
+    CompoundInterestGraphComponent
   ],
   imports: [
     BrowserModule,
@@ -27,9 +31,13 @@ import { NgxEchartsModule } from 'ngx-echarts';
     ReactiveFormsModule,
     SimpleVsCompoundInterestModule.forRoot(),
     AlertModule.forRoot(),
-    NgxEchartsModule.forRoot({ echarts: () => import('echarts') })
+    NgxEchartsModule.forRoot({ echarts: loadECharts})
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function loadECharts() {
+  return import('echarts')
+}
