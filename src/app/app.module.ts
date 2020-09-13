@@ -12,6 +12,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { AlertModule } from 'ngx-bootstrap/alert';
 
+// ECharts
+import { NgxEchartsModule } from 'ngx-echarts';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -24,6 +27,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     ReactiveFormsModule,
     SimpleVsCompoundInterestModule.forRoot(),
     AlertModule.forRoot(),
+    NgxEchartsModule.forRoot({ echarts: () => import('echarts') })
   ],
   providers: [],
   bootstrap: [AppComponent]
