@@ -11,6 +11,9 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 /* Material */
 import { MatSliderModule } from '@angular/material/slider';
 
+/* ECharts */
+import { NgxEchartsModule } from 'ngx-echarts';
+
 /* Component Imports */
 import { SimpleVsCompoundInterestComponent } from './components/simple-vs-compound-interest/simple-vs-compound-interest.component';
 
@@ -18,6 +21,7 @@ import { SimpleVsCompoundInterestComponent } from './components/simple-vs-compou
 
 /* Router Imports */
 import { SimpleVsCompoundInterestRoutingModule } from './simple-vs-compound-interest-routing.module';
+import { SimpleVsCompoundInterestGraphComponent } from './components/simple-vs-compound-interest-graph/simple-vs-compound-interest-graph.component';
 
 
 
@@ -27,10 +31,12 @@ import { SimpleVsCompoundInterestRoutingModule } from './simple-vs-compound-inte
         ReactiveFormsModule,
         MatSliderModule,
         AlertModule,
+        NgxEchartsModule,
         SimpleVsCompoundInterestRoutingModule
     ],
     declarations: [
-        SimpleVsCompoundInterestComponent
+        SimpleVsCompoundInterestComponent,
+        SimpleVsCompoundInterestGraphComponent
     ],
     exports: [
         CommonModule,

@@ -1,6 +1,8 @@
+import { EventEmitter } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, Validators } from '@angular/forms';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { SimpleCompoundInterestResult } from '../../models';
 import { SimpleVsCompoundInterestCalculatorService } from '../../services/simple-vs-compound-interest-calculator.service';
 
 @Component({
@@ -10,8 +12,11 @@ import { SimpleVsCompoundInterestCalculatorService } from '../../services/simple
 })
 export class SimpleVsCompoundInterestComponent implements OnInit {
 
-  // Form
+  // Form.
   private form: FormGroup;
+
+  // Event Emitters.
+  public updated: EventEmitter<SimpleCompoundInterestResult> = new EventEmitter<SimpleCompoundInterestResult>();
 
 
   constructor(
@@ -45,19 +50,20 @@ export class SimpleVsCompoundInterestComponent implements OnInit {
 
   public calculateInterest(): void {
     this.calculatorService.calculateInterest(this.existingSavings, this.monthlyDeposit);
+    this.updated.emit(this.data);
   }
 
   private setInterestRateEventListener(): void {
     this.form.get('interestRate').valueChanges.subscribe(value => {
       this.calculatorService.updateInterestRate(value);
-      this.calculatorService.calculateInterest(this.existingSavings, this.monthlyDeposit)
+      this.calculateInterest();
     })
   }
 
   private setSavingsPeriodEventListener(): void {
     this.form.get('savingsPeriod').valueChanges.subscribe(value => {
       this.calculatorService.updateTimePeriod(value);
-      this.calculatorService.calculateInterest(this.existingSavings, this.monthlyDeposit)
+      this.calculateInterest();
     })
   }
 
@@ -92,6 +98,10 @@ export class SimpleVsCompoundInterestComponent implements OnInit {
 
   get resultsExist(): boolean {
     return this.calculatorService.resultsExist;
+  }
+
+  get data(): SimpleCompoundInterestResult {
+    return this.calculatorService.results;
   }
 
 
