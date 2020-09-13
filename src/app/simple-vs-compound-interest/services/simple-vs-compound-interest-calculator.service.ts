@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
-import { InterestRateModel } from '../models/interest-rate.model';
-import { CompoundInterestRow } from '../models/compound-interest-row.model';
-import { SavingsTimePeriod } from '../models/savings-time-period.model';
+import { InterestRate } from '../models/interest-rate.model';
+import { MonthlyInterestResult } from '../models/monthly-interest-result.model';
+import { SavingsPeriod } from '../models/savings-period.model';
 import { MonthInterestAmount } from '../models/month-interest.model';
 import * as CurrJS from 'currency.js';
+import { SimpleVsCompoundInterestComponent } from '../components';
+import { SimpleCompoundInterestResult } from '../models';
+import { SimpleCompoundInput } from '../models/simple-compound-input.model';
 
 @Injectable({
     providedIn: 'root'
@@ -11,19 +14,17 @@ import * as CurrJS from 'currency.js';
 export class SimpleVsCompoundInterestCalculatorService {
 
     // Results
-    public interest: Array<CompoundInterestRow> = new Array<CompoundInterestRow>();
-    public interestEarned: any = {
-        compound: null,
-        simple: null
+    public results: SimpleCompoundInterestResult = {
+        detailed: new Array<MonthlyInterestResult>(),
+        interest: { compound: null, simple: null },
+        amount: { compound: null, simple: null }
     };
-    public totalAmount: any = {
-        compound: null,
-        simple: null
+
+    // Input
+    public input: SimpleCompoundInput = {
+        interest: new InterestRate(),
+        savingsPeriod: new SavingsPeriod()
     }
-
-
-    public rate: InterestRateModel = new InterestRateModel();
-    public timePeriod: SavingsTimePeriod = new SavingsTimePeriod();
 
 
     constructor() {
@@ -36,33 +37,44 @@ export class SimpleVsCompoundInterestCalculatorService {
 
     }
 
+
+    /** Given an annual interest rate (AER) > 1, sets the interest rate for other periods. */
     public updateInterestRate(annualRate: number): void {
-        this.rate.annually = annualRate / 100;
-        this.rate.quarterly = this.rate.annually / 4;
-        this.rate.monthly = this.rate.annually / 12;
-        this.rate.daily = this.rate.annually / 365;
+
+        // Transform annual rate into percentage/decimal.
+        annualRate = annualRate / 100;
+
+        this.input.interest = {
+            annually: annualRate,
+            quarterly: annualRate / 4,
+            monthly: annualRate / 12,
+            daily: annualRate / 365
+        };
     }
 
 
+    /** Given the savings period in years, sets the time period in years and months. */
     public updateTimePeriod(years: number): void {
-        this.timePeriod.years = years;
-        this.timePeriod.months = years * 12;
+        this.input.savingsPeriod.years = years;
+        this.input.savingsPeriod.months = years * 12;
     }
 
+
+    /** Performs interest calculation given all available input data. */
     public calculateInterest(initialAmount: number = 0, monthlyDeposit: number = 0): void {
 
         // Initialise empty array to store calculation results for each month.
-        this.interest = new Array<CompoundInterestRow>();
+        this.results.detailed = new Array<MonthlyInterestResult>();
 
         // Add Initial Month (Month 0).
-        this.interest.push(this.generateInitialMonthResult(initialAmount));
+        this.results.detailed.push(SimpleVsCompoundInterestCalculatorService.generateInitialMonthResult(initialAmount));
 
         // Calculate for each month for number of months specified by user.
-        for (let i = 1; i <= this.timePeriod.months; i++) {
+        for (let i = 1; i <= this.input.savingsPeriod.months; i++) {
 
             // Gather required data.
-            const previousRow: CompoundInterestRow = this.interest[i - 1];
-            const monthlyInterest: number = this.rate.monthly;
+            const previousRow: MonthlyInterestResult = this.results.detailed[i - 1];
+            const monthlyInterest: number = this.input.interest.monthly;
 
             // Calculate monthly interest.
             const interestResult: MonthInterestAmount = this.calculateMonthlyInterest(previousRow, initialAmount, monthlyInterest, monthlyDeposit);
@@ -83,42 +95,44 @@ export class SimpleVsCompoundInterestCalculatorService {
             const interest: any = {
                 compound: {
                     monthly: CurrJS(interestResult.monthlyInterestAmount.compound).value,
-                    total: CurrJS(this.interest[i - 1].interest.compound.total + interestResult.monthlyInterestAmount.compound).value
+                    total: CurrJS(this.results.detailed[i - 1].interest.compound.total + interestResult.monthlyInterestAmount.compound).value
                 },
                 simple: {
                     monthly: CurrJS(interestResult.monthlyInterestAmount.simple).value,
-                    total: CurrJS(this.interest[i - 1].interest.simple.total + interestResult.monthlyInterestAmount.simple).value
+                    total: CurrJS(this.results.detailed[i - 1].interest.simple.total + interestResult.monthlyInterestAmount.simple).value
                 }
             }
 
             // Generate result row object.
-            const monthRow: CompoundInterestRow = {
+            const monthRow: MonthlyInterestResult = {
                 month: i,
                 amount: amount,
                 interest: interest
             };
 
             // Add row to array.
-            this.interest.push(monthRow)
+            this.results.detailed.push(monthRow)
         }
 
         // Get Last Row.
-        const lastRow: CompoundInterestRow = this.interest[this.interest.length - 1];
+        const lastRow: MonthlyInterestResult = this.results.detailed[this.results.detailed.length - 1];
 
         // Set Final Results.
-        this.totalAmount = {
+        this.results.amount = {
             compound: lastRow.amount.compound,
             simple: lastRow.amount.simple
         }
 
-        this.interestEarned = {
+        this.results.interest = {
             compound: lastRow.interest.compound,
             simple: lastRow.interest.simple
         }
 
     }
 
-    private generateInitialMonthResult(initialAmount: number = 0): CompoundInterestRow {
+
+    /** Helper method: returns an empty row object. */
+    public static generateInitialMonthResult(initialAmount: number = 0): MonthlyInterestResult {
 
         return {
             month: 0,
@@ -147,8 +161,9 @@ export class SimpleVsCompoundInterestCalculatorService {
     }
 
 
+    /** Calculates compound and simple interest for one month */
     private calculateMonthlyInterest(
-        previousRow: CompoundInterestRow,
+        previousRow: MonthlyInterestResult,
         initialAmount: number = 0,
         interestRate: number = 0,
         monthlyDeposit: number = 0
@@ -179,12 +194,13 @@ export class SimpleVsCompoundInterestCalculatorService {
         }
     }
 
+
     // Getters & Setters
     get resultsExist(): boolean {
         try {
-            if (this.interest.length <= 0) return false;
-            if (this.totalAmount.compound == null || this.totalAmount.simple == null) return false;
-            if (this.interestEarned.compound == null || this.interestEarned.simple == null) return false;
+            if (this.results.detailed.length <= 0) return false;
+            if (this.results.amount.compound == null || this.results.amount.simple == null) return false;
+            if (this.results.interest.compound == null || this.results.interest.simple == null) return false;
             return true;
         } catch (error) {
             return false;

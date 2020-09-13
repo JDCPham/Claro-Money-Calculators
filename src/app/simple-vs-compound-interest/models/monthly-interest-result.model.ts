@@ -1,4 +1,4 @@
-export class CompoundInterestRow {
+export class MonthlyInterestResult {
    month: number;
    amount: {
       compound: {

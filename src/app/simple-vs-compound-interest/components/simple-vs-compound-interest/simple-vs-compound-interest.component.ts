@@ -31,8 +31,8 @@ export class SimpleVsCompoundInterestComponent implements OnInit {
     return this.formBuilder.group({
       existingSavings: [{ value: 0, disabled: false }, [Validators.required]],
       monthlyDeposit: [{ value: 0, disabled: false }, [Validators.required]],
-      interestRate: [{ value: this.calculatorService.rate.annually * 100, disabled: false }, [Validators.required]],
-      savingsPeriod: [{ value: this.calculatorService.timePeriod.years, disabled: false }, [Validators.required]]
+      interestRate: [{ value: this.calculatorService.input.interest.annually * 100, disabled: false }, [Validators.required]],
+      savingsPeriod: [{ value: this.calculatorService.input.savingsPeriod.years, disabled: false }, [Validators.required]]
     })
 
   }
@@ -71,22 +71,22 @@ export class SimpleVsCompoundInterestComponent implements OnInit {
   }
 
   get compoundInterestEarned(): any {
-    try { return this.calculatorService.interestEarned.compound.total; }
+    try { return this.calculatorService.results.interest.compound.total; }
     catch (error) { return error; }
   }
 
   get simpleInterestEarned(): any {
-    try { return this.calculatorService.interestEarned.simple.total; }
+    try { return this.calculatorService.results.interest.simple.total; }
     catch (error) { return error; }
   }
 
   get compoundTotalAmount(): any {
-    try { return this.calculatorService.totalAmount.compound.rounded; }
+    try { return this.calculatorService.results.amount.compound.rounded; }
     catch (error) { return error; }
   }
 
   get simpleTotalAmount(): any {
-    try { return this.calculatorService.totalAmount.simple.rounded; }
+    try { return this.calculatorService.results.amount.simple.rounded; }
     catch (error) { return error; }
   }
 

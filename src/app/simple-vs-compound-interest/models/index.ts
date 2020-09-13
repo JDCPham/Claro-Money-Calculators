@@ -1,3 +1,5 @@
 export * from './interest-rate.model'
-export * from './compound-interest-row.model'
-export * from './savings-time-period.model'
+export * from './monthly-interest-result.model'
+export * from './savings-period.model'
+export * from './simple-compound-interest-result.model'
+export * from './simple-compound-input.model'
