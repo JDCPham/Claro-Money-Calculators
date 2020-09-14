@@ -17,12 +17,13 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { CompoundInterestComponent } from './compound-interest/components/compound-interest/compound-interest.component';
 import { CompoundInterestGraphComponent } from './compound-interest/components/compound-interest-graph/compound-interest-graph.component';
 import { CompoundInterestModule } from './compound-interest/compound-interest.module';
-import { HomeComponent } from './home/components/home/home.component';
+import { HomeModule } from './home/home.module';
+import { MonthlySavingsComponent } from './monthly-savings/components/monthly-savings/monthly-savings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    MonthlySavingsComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +31,7 @@ import { HomeComponent } from './home/components/home/home.component';
     BrowserAnimationsModule,
     MatSliderModule,
     ReactiveFormsModule,
+    HomeModule.forRoot(),
     SimpleVsCompoundInterestModule.forRoot(),
     CompoundInterestModule.forRoot(),
     AlertModule.forRoot(),

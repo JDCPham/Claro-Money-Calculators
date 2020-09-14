@@ -6,6 +6,7 @@ import { Optional } from '@angular/core';
 import { SkipSelf } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 /* Material */
 import { MatSliderModule } from '@angular/material/slider';
@@ -14,13 +15,13 @@ import { MatSliderModule } from '@angular/material/slider';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 /* Component Imports */
-import { HomeComponent } from './components/home/home.component';
+import { MonthlySavingsComponent } from './components/monthly-savings/monthly-savings.component';
 
 /* Service Imports */
 
 /* Router Imports */
-import { HomeRoutingModule } from './home-routing.module';
-
+import { MonthlySavingsRoutingModule } from './monthly-savings-routing.module';
+;
 
 
 @NgModule({
@@ -28,15 +29,16 @@ import { HomeRoutingModule } from './home-routing.module';
         CommonModule,
         ReactiveFormsModule,
         MatSliderModule,
+        AlertModule,
         NgxEchartsModule,
-        HomeRoutingModule
+        MonthlySavingsRoutingModule
     ],
     declarations: [
-        HomeComponent
+        MonthlySavingsComponent
     ],
     exports: [
         CommonModule,
-        HomeComponent
+        MonthlySavingsComponent
     ],
     providers: [
         
@@ -45,15 +47,15 @@ import { HomeRoutingModule } from './home-routing.module';
         
     ],
 })
-export class HomeModule {
+export class MonthlySavingsModule {
 
-    constructor(@Optional() @SkipSelf() parentModule: HomeModule) {
-        if (parentModule) throw new Error('HomeModule is already loaded.')
+    constructor(@Optional() @SkipSelf() parentModule: MonthlySavingsModule) {
+        if (parentModule) throw new Error('MonthlySavingsModule is already loaded.')
     }
 
     static forRoot(): ModuleWithProviders {
         return {
-            ngModule: HomeModule,
+            ngModule: MonthlySavingsModule,
             providers: []
         }
     }
