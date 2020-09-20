@@ -8,7 +8,7 @@ import { MonthInterestAmount } from '../models/month-interest-amount.model';
 @Injectable({
   providedIn: 'root'
 })
-export class CompoundInterestCalculatorService {
+export class CompoundInterestService {
 
   constructor() { }
 
@@ -36,7 +36,7 @@ export class CompoundInterestCalculatorService {
     const results: Array<MonthlyInterestResult> = new Array<MonthlyInterestResult>();
 
     // Add Initial Month (Month 0).
-    results.push(CompoundInterestCalculatorService.generateInitialMonthResult(initialAmount));
+    results.push(CompoundInterestService.generateInitialMonthResult(initialAmount));
 
     // Calculate for each month for number of months specified by user.
     for (let i = 1; i <= savingsPeriod.months; i++) {

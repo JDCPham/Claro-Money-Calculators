@@ -1,0 +1,240 @@
+<p>Mortgage Saving Goal Calculator</p>
+
+<form [formGroup]="form">
+
+    <!-- User Input: Property Value -->
+    <div class="form-group">
+        <label>Property Value</label>
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">£</span>
+            </div>
+            <input type="number" class="form-control" formControlName="propertyValue">
+        </div>
+    </div>
+
+    <!-- User Input: Deposit Value -->
+    <div class="form-group">
+        <label>Deposit Value (%)</label>
+        <div class="input-group ">
+            <input type="number" class="form-control" formControlName="depositValue">
+            <div class="input-group-append">
+                <span class="input-group-text">%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Input: Include Other Fees -->
+    <div class="form-group">
+        <label>Include other fees?</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="otherFees" [value]="true" formControlName="otherFees">
+            <label class="form-check-label">Yes</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="otherFees" [value]="false" formControlName="otherFees">
+            <label class="form-check-label">No</label>
+        </div>
+    </div>
+
+    <div *ngIf="showOtherFees">
+
+        <!-- User Input: Stamp Duty -->
+        <div class="form-group">
+            <label>Stamp Duty</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">£</span>
+                </div>
+                <input type="number" class="form-control" formControlName="stampDuty">
+            </div>
+        </div>
+
+        <!-- User Input: Legal Fees -->
+        <div class="form-group">
+            <label>Legal Fees</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">£</span>
+                </div>
+                <input type="number" class="form-control" formControlName="legalFees">
+            </div>
+        </div>
+
+        <!-- User Input: Mortgage Broker Fees -->
+        <div class="form-group">
+            <label>Mortgage Broker Fees</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">£</span>
+                </div>
+                <input type="number" class="form-control" formControlName="mortgageBrokerFees">
+            </div>
+        </div>
+
+        <!-- User Input: Mortgage Costs -->
+        <div class="form-group">
+            <label>Mortgage Costs</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">£</span>
+                </div>
+                <input type="number" class="form-control" formControlName="mortgageCosts">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Sub-Result: Cost Of Buying -->
+    <alert type="info"><strong>Total Cost of Buying: </strong>£260,000</alert>
+
+    <!-- Sub-Result: Cost Of Buying: Deposit -->
+    <alert type="info"><strong>Deposit: </strong>£28,000</alert>
+
+    <!-- Sub-Result: Fees -->
+    <alert type="info"><strong>Fees: </strong>£4,000</alert>
+
+    <!-- User Input: Savings -->
+    <div class="form-group">
+        <label>What are your savings?</label>
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">£</span>
+            </div>
+            <input type="number" class="form-control" formControlName="savings">
+        </div>
+    </div>
+
+    <!-- Sub-Result: Goal Saving Amount -->
+    <alert type="info"><strong>Goal Saving Amount: </strong>£{{savings.value}}</alert>
+
+    <!-- User Input: Do you know how much to save each month? -->
+    <div class="form-group">
+        <label>Do you know how much to save each month?</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="isAwareOfMonthlySavings" [value]="true"
+                formControlName="isAwareOfMonthlySavings">
+            <label class="form-check-label">Yes</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="isAwareOfMonthlySavings" [value]="false"
+                formControlName="isAwareOfMonthlySavings">
+            <label class="form-check-label">No</label>
+        </div>
+    </div>
+
+
+    <div *ngIf="showIsAwareOfMonthlySavings">
+
+        <!-- User Input: Income -->
+        <div class="form-group">
+            <label>Income</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">£</span>
+                </div>
+                <input type="number" class="form-control" formControlName="income" (blur)="updateAffordToSaveEachMonth()">
+            </div>
+        </div>
+
+        <!-- User Input: Outgoing Rent -->
+        <div class="form-group">
+            <label>Rent</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">£</span>
+                </div>
+                <input type="number" class="form-control" formControlName="rent" (blur)="updateAffordToSaveEachMonth()">
+            </div>
+        </div>
+
+        <!-- User Input: Utilities -->
+        <div class="form-group">
+            <label>Utilities</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">£</span>
+                </div>
+                <input type="number" class="form-control" formControlName="utilities" (blur)="updateAffordToSaveEachMonth()">
+            </div>
+        </div>
+
+        <!-- User Input: Subscriptions -->
+        <div class="form-group">
+            <label>Subscriptions</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">£</span>
+                </div>
+                <input type="number" class="form-control" formControlName="subscriptions" (blur)="updateAffordToSaveEachMonth()">
+            </div>
+        </div>
+
+        <!-- User Input: Family -->
+        <div class="form-group">
+            <label>Family</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">£</span>
+                </div>
+                <input type="number" class="form-control" formControlName="family" (blur)="updateAffordToSaveEachMonth()">
+            </div>
+        </div>
+
+         <!-- User Input: Leisure -->
+         <div class="form-group">
+            <label>Leisure</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">£</span>
+                </div>
+                <input type="number" class="form-control" formControlName="leisure" (blur)="updateAffordToSaveEachMonth()">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Sub-Result: Cost Of Buying -->
+    <alert type="info"><strong>Total Monthly Savings from User Input: </strong>£{{totalMonthlySavingsFromUserInput}}</alert>
+
+    <!-- User Input: Afford to Save Each Month -->
+    <div class="form-group">
+        <label>Afford to save per month</label>
+        <mat-slider min="10" max="3000" step="10" formControlName="affordToSaveEachMonth" style="width: 100%"></mat-slider>
+    </div>
+
+    {{affordToSaveEachMonth.value}}
+
+    <!-- User Input: Desired Time of Purchase -->
+    <div class="form-group">
+        <label>Desired Time of Purchase</label>
+        <mat-slider min="0" max="50" step="1" formControlName="desiredTimeOfPurchase" style="width: 100%"></mat-slider>
+    </div>
+
+    <!-- User Input: Interest Rate Buttons -->
+    <div class="d-flex mb-5">
+        <button type="button" class="btn btn-primary mr-1">Low</button>
+        <button type="button" class="btn btn-primary mx-1">Medium</button>
+        <button type="button" class="btn btn-primary ml-1">High</button>
+    </div>
+
+    <!-- Final Results -->
+    <div *ngIf="resultsExist">
+        <alert type="success">
+            <strong>Compound Interest Earned: </strong>{{compoundInterestEarned}}
+        </alert>
+        <alert type="success">
+            <strong>Simple Interest Earned: </strong>{{simpleInterestEarned}}
+        </alert>
+        <alert type="info">
+            <strong>Compound Total Value: </strong>{{compoundTotalAmount}}
+        </alert>
+        <alert type="info">
+            <strong>Simple Total Value: </strong>{{simpleTotalAmount}}
+        </alert>
+
+    </div>
+
+
+
+</form>

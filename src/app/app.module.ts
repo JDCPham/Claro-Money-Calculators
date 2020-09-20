@@ -3,6 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms'
 import { CompoundInterest1Module } from './compound-interest-1/compound-interest-1.module';
+import { CompoundInterest2Module } from './compound-interest-2/compound-interest-2.module';
+import { MonthlySavingsModule } from './monthly-savings/monthly-savings.module';
+import { MortgageModule } from './mortgage/mortgage.module';
+import { SharedModule } from './shared/shared.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,9 +18,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 
 // ECharts
 import { NgxEchartsModule } from 'ngx-echarts';
-import { CompoundInterest2Module } from './compound-interest-2/compound-interest-2.module';
 import { HomeModule } from './home/home.module';
-import { MonthlySavingsModule } from './monthly-savings/monthly-savings.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { MonthlySavingsModule } from './monthly-savings/monthly-savings.module';
     CompoundInterest1Module.forRoot(),
     CompoundInterest2Module.forRoot(),
     AlertModule.forRoot(),
+    MortgageModule.forRoot(),
+    SharedModule.forRoot(),
     NgxEchartsModule.forRoot({ echarts: loadECharts})
   ],
   providers: [],

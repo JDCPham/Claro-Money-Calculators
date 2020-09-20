@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Period } from '../models/period.model';
+import { Period } from '../../shared/models';
 import { MonthlySavingsInput } from '../models/monthly-savings-input.model';
-import { CompoundInterestCalculatorService } from './compound-interest-calculator.service';
+import { CompoundInterestService } from '../../shared/services/compound-interest.service';
 import { MonthlySavingsResult } from '../models/monthly-savings-result.model';
 
 @Injectable({
@@ -24,7 +24,7 @@ export class MonthlySavingsCalculatorService {
 
 
     constructor(
-        private compoundInterestCalculator: CompoundInterestCalculatorService
+        private compoundInterestService: CompoundInterestService
     ) {
 
         // Set Default Goal Time Period.
@@ -44,12 +44,12 @@ export class MonthlySavingsCalculatorService {
 
             // Calculate Monthly Savings Accurate to £10.
             for (let i = 0; i <= this.input.goalAmount; i += 10) {
-                let result = this.compoundInterestCalculator.calculateInterest(this.input.initialAmount, i, 3, this.input.goalPeriod.years);
+                let result = this.compoundInterestService.calculateInterest(this.input.initialAmount, i, 3, this.input.goalPeriod.years);
                 if (result.rounded >= this.input.goalAmount) {
                     const lowerBound: number = i - 10;
                     const upperBound: number = i + 10;
                     for (let j = lowerBound; j <= upperBound; j += 0.01) {
-                        let accurateResult = this.compoundInterestCalculator.calculateInterest(this.input.initialAmount, j, 3, this.input.goalPeriod.years);
+                        let accurateResult = this.compoundInterestService.calculateInterest(this.input.initialAmount, j, 3, this.input.goalPeriod.years);
                         if (accurateResult.rounded >= this.input.goalAmount) {
                             console.log(j);
                             return j;
