@@ -15,13 +15,13 @@ import { MatSliderModule } from '@angular/material/slider';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 /* Component Imports */
-import { CompoundInterestComponent } from './components/compound-interest/compound-interest.component';
-import { CompoundInterestGraphComponent } from './components/compound-interest-graph/compound-interest-graph.component';
+import { CompoundInterest2Component } from './components/compound-interest-2/compound-interest-2.component';
+import { CompoundInterest2GraphComponent } from './components/compound-interest-2-graph/compound-interest-2-graph.component';
 
 /* Service Imports */
 
 /* Router Imports */
-import { CompoundInterestRoutingModule } from './compound-interest-routing.module';
+import { CompoundInterest2RoutingModule } from './compound-interest-2-routing.module';
 ;
 
 
@@ -32,15 +32,15 @@ import { CompoundInterestRoutingModule } from './compound-interest-routing.modul
         MatSliderModule,
         AlertModule,
         NgxEchartsModule,
-        CompoundInterestRoutingModule
+        CompoundInterest2RoutingModule
     ],
     declarations: [
-        CompoundInterestComponent,
-        CompoundInterestGraphComponent
+        CompoundInterest2Component,
+        CompoundInterest2GraphComponent
     ],
     exports: [
         CommonModule,
-        CompoundInterestComponent
+        CompoundInterest2Component
     ],
     providers: [
         
@@ -49,15 +49,15 @@ import { CompoundInterestRoutingModule } from './compound-interest-routing.modul
         
     ],
 })
-export class CompoundInterestModule {
+export class CompoundInterest2Module {
 
-    constructor(@Optional() @SkipSelf() parentModule: CompoundInterestModule) {
-        if (parentModule) throw new Error('CompoundInterestModule is already loaded.')
+    constructor(@Optional() @SkipSelf() parentModule: CompoundInterest2Module) {
+        if (parentModule) throw new Error('CompoundInterest2Module is already loaded.')
     }
 
     static forRoot(): ModuleWithProviders {
         return {
-            ngModule: CompoundInterestModule,
+            ngModule: CompoundInterest2Module,
             providers: []
         }
     }

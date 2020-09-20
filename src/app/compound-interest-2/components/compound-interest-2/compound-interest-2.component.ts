@@ -1,17 +1,19 @@
 import { EventEmitter } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, Validators } from '@angular/forms';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { SimpleCompoundInterestResult } from '../../models';
-import { SimpleVsCompoundInterestCalculatorService } from '../../services/simple-vs-compound-interest-calculator.service';
+import { Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { SimpleCompoundInterestResult } from 'src/app/compound-interest-1/models/simple-compound-interest-result.model';
+import { SimpleVsCompoundInterestCalculatorService } from 'src/app/compound-interest-1/services/simple-vs-compound-interest-calculator.service';
 
 @Component({
-  selector: 'app-simple-vs-compound-interest',
-  templateUrl: './simple-vs-compound-interest.component.html',
-  styleUrls: ['./simple-vs-compound-interest.component.scss']
+  selector: 'app-compound-interest-2',
+  templateUrl: './compound-interest-2.component.html',
+  styleUrls: ['./compound-interest-2.component.scss']
 })
-export class SimpleVsCompoundInterestComponent implements OnInit {
+export class CompoundInterest2Component implements OnInit {
 
+  
   // Form.
   public form: FormGroup;
 
@@ -29,7 +31,7 @@ export class SimpleVsCompoundInterestComponent implements OnInit {
     this.form = this.buildForm();
     this.setEventListeners();
     this.calculateInterest();
-    this.updated.emit()
+    this.updated.emit();
   }
 
 
@@ -45,6 +47,13 @@ export class SimpleVsCompoundInterestComponent implements OnInit {
   }
 
 
+  public setInterestRate(value: number = 1): void {
+    this.form.patchValue({
+      interestRate: value
+    })
+  }
+
+
   private setEventListeners(): void {
     this.setInterestRateEventListener();
     this.setSavingsPeriodEventListener();
@@ -52,7 +61,7 @@ export class SimpleVsCompoundInterestComponent implements OnInit {
 
   public calculateInterest(): void {
     this.calculatorService.calculateInterest(this.existingSavings, this.monthlyDeposit);
-    this.updated.emit();
+    this.updated.emit(this.data);
   }
 
   private setInterestRateEventListener(): void {
@@ -105,7 +114,5 @@ export class SimpleVsCompoundInterestComponent implements OnInit {
   get data(): SimpleCompoundInterestResult {
     return this.calculatorService.results;
   }
-
-
 
 }

@@ -15,13 +15,13 @@ import { MatSliderModule } from '@angular/material/slider';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 /* Component Imports */
-import { SimpleVsCompoundInterestComponent } from './components/simple-vs-compound-interest/simple-vs-compound-interest.component';
+import { CompoundInterest1Component } from './components/compound-interest-1/compound-interest-1.component';
 
 /* Service Imports */
 
 /* Router Imports */
-import { SimpleVsCompoundInterestRoutingModule } from './simple-vs-compound-interest-routing.module';
-import { SimpleVsCompoundInterestGraphComponent } from './components/simple-vs-compound-interest-graph/simple-vs-compound-interest-graph.component';
+import { CompoundInterest1RoutingModule } from './compound-interest-1-routing.module';
+import { CompoundInterest1GraphComponent } from './components/compond-interest-1-graph/compound-interest-1-graph.component'
 
 
 
@@ -32,15 +32,15 @@ import { SimpleVsCompoundInterestGraphComponent } from './components/simple-vs-c
         MatSliderModule,
         AlertModule,
         NgxEchartsModule,
-        SimpleVsCompoundInterestRoutingModule
+        CompoundInterest1RoutingModule
     ],
     declarations: [
-        SimpleVsCompoundInterestComponent,
-        SimpleVsCompoundInterestGraphComponent
+        CompoundInterest1Component,
+        CompoundInterest1GraphComponent
     ],
     exports: [
         CommonModule,
-        SimpleVsCompoundInterestComponent
+        CompoundInterest1Component
     ],
     providers: [
         
@@ -49,15 +49,15 @@ import { SimpleVsCompoundInterestGraphComponent } from './components/simple-vs-c
         
     ],
 })
-export class SimpleVsCompoundInterestModule {
+export class CompoundInterest1Module {
 
-    constructor(@Optional() @SkipSelf() parentModule: SimpleVsCompoundInterestModule) {
-        if (parentModule) throw new Error('SimpleVsCompoundInterestModule is already loaded.')
+    constructor(@Optional() @SkipSelf() parentModule: CompoundInterest1Module) {
+        if (parentModule) throw new Error('CompoundInterest1Module is already loaded.')
     }
 
     static forRoot(): ModuleWithProviders {
         return {
-            ngModule: SimpleVsCompoundInterestModule,
+            ngModule: CompoundInterest1Module,
             providers: []
         }
     }

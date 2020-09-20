@@ -1,17 +1,17 @@
 /* Angular Imports */
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CompoundInterestComponent } from './components';
+import { CompoundInterest2Component } from './components';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
 
-        {  path: 'compound-interest', component: CompoundInterestComponent }
+        {  path: 'compound-interest-2', component: CompoundInterest2Component }
 
     ]),
   ],
   exports: [RouterModule]
 })
 
-export class CompoundInterestRoutingModule {}
+export class CompoundInterest2RoutingModule {}

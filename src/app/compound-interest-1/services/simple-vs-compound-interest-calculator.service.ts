@@ -4,7 +4,7 @@ import { MonthlyInterestResult } from '../models/monthly-interest-result.model';
 import { SavingsPeriod } from '../models/savings-period.model';
 import { MonthInterestAmount } from '../models/month-interest.model';
 import * as CurrJS from 'currency.js';
-import { SimpleVsCompoundInterestComponent } from '../components';
+import { CompoundInterest1Component } from '../components';
 import { SimpleCompoundInterestResult } from '../models';
 import { SimpleCompoundInput } from '../models/simple-compound-input.model';
 

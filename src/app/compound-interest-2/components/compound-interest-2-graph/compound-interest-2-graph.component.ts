@@ -1,14 +1,14 @@
 import { EventEmitter, Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { SimpleVsCompoundInterestCalculatorService } from 'src/app/simple-vs-compound-interest';
-import { SimpleCompoundInterestResult } from 'src/app/simple-vs-compound-interest/models/simple-compound-interest-result.model';
+import { SimpleVsCompoundInterestCalculatorService } from 'src/app/compound-interest-1';
+import { SimpleCompoundInterestResult } from 'src/app/compound-interest-1/models/simple-compound-interest-result.model';
 
 @Component({
-  selector: 'compound-interest-graph',
-  templateUrl: './compound-interest-graph.component.html',
-  styleUrls: ['./compound-interest-graph.component.scss']
+  selector: 'compound-interest-2-graph',
+  templateUrl: './compound-interest-2-graph.component.html',
+  styleUrls: ['./compound-interest-2-graph.component.scss']
 })
-export class CompoundInterestGraphComponent implements OnInit {
+export class CompoundInterest2GraphComponent implements OnInit {
 
   public options: any;
 

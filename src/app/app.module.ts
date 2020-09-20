@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms'
-import { SimpleVsCompoundInterestModule } from './simple-vs-compound-interest/simple-vs-compound-interest.module';
+import { CompoundInterest1Module } from './compound-interest-1/compound-interest-1.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,16 +14,13 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 
 // ECharts
 import { NgxEchartsModule } from 'ngx-echarts';
-import { CompoundInterestComponent } from './compound-interest/components/compound-interest/compound-interest.component';
-import { CompoundInterestGraphComponent } from './compound-interest/components/compound-interest-graph/compound-interest-graph.component';
-import { CompoundInterestModule } from './compound-interest/compound-interest.module';
+import { CompoundInterest2Module } from './compound-interest-2/compound-interest-2.module';
 import { HomeModule } from './home/home.module';
-import { MonthlySavingsComponent } from './monthly-savings/components/monthly-savings/monthly-savings.component';
+import { MonthlySavingsModule } from './monthly-savings/monthly-savings.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MonthlySavingsComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -32,8 +29,9 @@ import { MonthlySavingsComponent } from './monthly-savings/components/monthly-sa
     MatSliderModule,
     ReactiveFormsModule,
     HomeModule.forRoot(),
-    SimpleVsCompoundInterestModule.forRoot(),
-    CompoundInterestModule.forRoot(),
+    MonthlySavingsModule.forRoot(),
+    CompoundInterest1Module.forRoot(),
+    CompoundInterest2Module.forRoot(),
     AlertModule.forRoot(),
     NgxEchartsModule.forRoot({ echarts: loadECharts})
   ],

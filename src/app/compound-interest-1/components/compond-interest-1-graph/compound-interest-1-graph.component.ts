@@ -4,11 +4,11 @@ import { SimpleCompoundInterestResult } from '../../models';
 import { SimpleVsCompoundInterestCalculatorService } from '../../services';
 
 @Component({
-    selector: 'simple-vs-compound-interest-graph',
-    templateUrl: './simple-vs-compound-interest-graph.component.html',
-    styleUrls: ['./simple-vs-compound-interest-graph.component.scss']
+    selector: 'compound-interest-1-graph',
+    templateUrl: './compound-interest-1-graph.component.html',
+    styleUrls: ['./compound-interest-1-graph.component.scss']
 })
-export class SimpleVsCompoundInterestGraphComponent implements OnInit {
+export class CompoundInterest1GraphComponent implements OnInit {
 
     public options: any;
 
