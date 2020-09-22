@@ -1,0 +1,17 @@
+<div class="stepper">
+
+    <mortgage-step value="1" [first]="true" [last]="false" class="step-1"></mortgage-step>
+    <mortgage-step value="2" [first]="false" [last]="false" class="step-2"></mortgage-step>
+    <mortgage-step value="3" [first]="false" [last]="false" class="step-3"></mortgage-step>
+    <mortgage-step value="4" [first]="false" [last]="true" class="step-4"></mortgage-step>
+
+    <mortgage-line class="line-1"></mortgage-line>
+    <mortgage-line class="line-2"></mortgage-line>
+    <mortgage-line class="line-3"></mortgage-line>
+
+    <mortgage-label [value]="labels.step1" class="label-1"></mortgage-label>
+    <mortgage-label [value]="labels.step2" class="label-2"></mortgage-label>
+    <mortgage-label [value]="labels.step3" class="label-3"></mortgage-label>
+    <mortgage-label [value]="labels.step4" class="label-4"></mortgage-label>
+
+</div>

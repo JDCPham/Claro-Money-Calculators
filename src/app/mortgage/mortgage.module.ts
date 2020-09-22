@@ -21,6 +21,10 @@ import { MortgageComponent } from './components/mortgage/mortgage.component';
 
 /* Router Imports */
 import { MortgageRoutingModule } from './mortgage-routing.module';
+import { MortgageStepperComponent } from './components/mortgage-stepper/mortgage-stepper/mortgage-stepper.component';
+import { MortgageStepComponent } from './components/mortgage-stepper/mortgage-step/mortgage-step.component';
+import { MortgageLineComponent } from './components/mortgage-stepper/mortgage-line/mortgage-line.component';
+import { MortgageLabelComponent } from './components/mortgage-stepper/mortgage-label/mortgage-label.component';
 ;
 
 
@@ -34,7 +38,11 @@ import { MortgageRoutingModule } from './mortgage-routing.module';
         MortgageRoutingModule
     ],
     declarations: [
-        MortgageComponent
+        MortgageComponent,
+        MortgageStepperComponent,
+        MortgageStepComponent,
+        MortgageLineComponent,
+        MortgageLabelComponent,
     ],
     exports: [
         CommonModule,
