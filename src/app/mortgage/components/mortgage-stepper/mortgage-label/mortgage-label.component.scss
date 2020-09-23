@@ -3,16 +3,18 @@
 label {
     text-align: center;
     color: $primaryA;
-    font-weight: 700;
     font-size: 14px;
     line-height: 20px;
     width: 105px;
+    font-family: 'Gilroy', sans-serif;
 }
 
 .active {
     opacity: 1;
+    font-weight: normal;
 }
 
 .inactive {
     opacity: 0.5;
+    font-weight: normal;
 }

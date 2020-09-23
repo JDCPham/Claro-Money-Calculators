@@ -2,7 +2,6 @@
     display: grid;
     grid-template-columns: max-content 1fr max-content 1fr max-content 1fr max-content;
     grid-template-rows: max-content max-content;
-    align-items: center;
     justify-content: center;
 }
 
@@ -16,6 +15,6 @@
 .label-3 { grid-column: 5/6; grid-row: 2/3; } 
 .label-4 { grid-column: 7/8; grid-row: 2/3; } 
 
-.line-1 { grid-column: 2/3; grid-row: 1/2; }
-.line-2 { grid-column: 4/5; grid-row: 1/2; }
-.line-3 { grid-column: 6/7; grid-row: 1/2; }
+.line-1 { grid-column: 2/3; grid-row: 1/2; align-self: center; }
+.line-2 { grid-column: 4/5; grid-row: 1/2; align-self: center; }
+.line-3 { grid-column: 6/7; grid-row: 1/2; align-self: center; }
