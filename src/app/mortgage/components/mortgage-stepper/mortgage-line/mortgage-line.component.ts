@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'mortgage-line',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mortgage-line.component.scss']
 })
 export class MortgageLineComponent implements OnInit {
+
+  @Input()
+  public active: boolean = false;
 
   constructor() { }
 

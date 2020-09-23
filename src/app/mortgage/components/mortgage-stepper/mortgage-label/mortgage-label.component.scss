@@ -1,0 +1,18 @@
+@import '~src/styles/custom';
+
+label {
+    text-align: center;
+    color: $primaryA;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    width: 105px;
+}
+
+.active {
+    opacity: 1;
+}
+
+.inactive {
+    opacity: 0.5;
+}

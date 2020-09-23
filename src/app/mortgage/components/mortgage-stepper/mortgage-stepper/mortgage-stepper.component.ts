@@ -22,5 +22,47 @@ export class MortgageStepperComponent implements OnInit {
 
   ngOnInit() {
   }
+  
+
+  /** Return True iff given step is current step or earlier. **/
+  public isCurrentStep(value: number): boolean {
+
+    // Reduce step by 1 to allow comparison with MortgageStep Enum.
+    value -= 1;
+
+    // Activate dot only if current step or previous step.
+    if (value == this.step) return true;
+
+    // Otherwise leave as false.
+    else return false;
+
+  }
+
+
+  /** Return True iff given step is current step or earlier. **/
+  public isLineActive(value: number): boolean {
+
+    // Activate line only if current step or previous step.
+    if (value <= this.step) return true;
+
+    // Otherwise leave as false.
+    else return false;
+
+  };
+
+
+  /** Return True iff given step is current step or earlier. **/
+  public isDotActive(value: number): boolean {
+
+    // Reduce step by 1 to allow comparison with MortgageStep Enum.
+    value -= 1;
+
+    // Activate dot only if current step or previous step.
+    if (value <= this.step) return true;
+
+    // Otherwise leave as false.
+    else return false;
+    
+  }
 
 }

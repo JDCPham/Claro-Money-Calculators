@@ -16,8 +16,15 @@ export class MortgageStepComponent implements OnInit {
   @Input()
   public last: boolean = false;
 
+  @Input()
+  public active: boolean = false;
+
+  @Input()
+  public current: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
+    console.log(this.value + " " + this.current)
   }
 }

@@ -10,9 +10,8 @@ export class MortgageLabelComponent implements OnInit {
   @Input()
   public value: any;
 
-  public styles: any = {
-    width: "150px"
-  };
+  @Input()
+  public active: boolean = false;
 
   constructor() { }
 
