@@ -25,6 +25,10 @@ import { MortgageStepperComponent } from './components/mortgage-stepper/mortgage
 import { MortgageStepComponent } from './components/mortgage-stepper/mortgage-step/mortgage-step.component';
 import { MortgageLineComponent } from './components/mortgage-stepper/mortgage-line/mortgage-line.component';
 import { MortgageLabelComponent } from './components/mortgage-stepper/mortgage-label/mortgage-label.component';
+import { MortgageStepOneComponent } from './components/mortgage-step-one/mortgage-step-one/mortgage-step-one.component';
+import { MortgageStepTwoComponent } from './components/mortgage-step-two/mortgage-step-two.component';
+import { MortgageStepThreeComponent } from './components/mortgage-step-three/mortgage-step-three.component';
+import { MortgageStepOneOutputComponent } from './components/mortgage-step-one/mortgage-step-one-output/mortgage-step-one-output.component';
 ;
 
 
@@ -43,6 +47,10 @@ import { MortgageLabelComponent } from './components/mortgage-stepper/mortgage-l
         MortgageStepComponent,
         MortgageLineComponent,
         MortgageLabelComponent,
+        MortgageStepOneComponent,
+        MortgageStepTwoComponent,
+        MortgageStepThreeComponent,
+        MortgageStepOneOutputComponent
     ],
     exports: [
         CommonModule,
