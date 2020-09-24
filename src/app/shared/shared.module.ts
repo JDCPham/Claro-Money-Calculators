@@ -7,6 +7,7 @@ import { SkipSelf } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
 import { CompoundInterestService } from './services/compound-interest.service';
+// import { validatePercentage } from './validators';
 
 /* Component Imports */
 
@@ -24,7 +25,8 @@ import { CompoundInterestService } from './services/compound-interest.service';
     declarations: [
     ],
     exports: [
-        CommonModule    ],
+        CommonModule,
+    ],
     providers: [
         
     ],

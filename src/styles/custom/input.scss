@@ -1,12 +1,31 @@
 @import 'theme';
 
-.input-group-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    height: 100%;
+.input-container {
     width: 100%;
-    background-color: $tertiaryA;
+    height: 46px;
+    position: relative;
+}
 
+.input-absolute {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: transparent;    
+    padding-left: 48px;
+}
+
+.input-icon {
+    position: absolute;
+    left: 6px;
+    top: 5px;
+    width: 36px;
+    height: 36px;
+    border-radius: 36px;
+    background-color: $tertiaryA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 18px;
+    line-height: 26px;
 }

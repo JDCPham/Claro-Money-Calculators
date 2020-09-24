@@ -1,0 +1,41 @@
+<form class="row" [formGroup]="form">
+
+    <!-- Input -->
+    <div class="col-12 col-md-6">
+
+        <div class="d-flex flex-column">
+
+            <!-- Input: Title -->
+            <h1>Savings</h1>
+
+             <!-- Input: Savings -->
+             <div class="form-group mt-2">
+                <label class="mb-2">What are your savings</label>
+                <div class="input-container">
+                    <input type="number" class="form-control input-absolute">
+                    <div class="input-icon">£</div>
+                </div>  
+                <!-- <small *ngIf="propertyValueInvalid">{{errorMessage(propertyValue.errors)}}</small> -->
+            </div>
+
+            <!-- Input: Next -->
+            <div class="row mt-3">
+                <div class="col-8 offset-4">
+                    <button type="button" class="btn btn-primary w-100" [disabled]="!isFormValid" (click)="next()">Next</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Output -->
+    <div class="col-12 col-md-6">
+        <mortgage-step-two-output
+            [fees]="stepOne.fees"
+            [deposit]="stepOne.depositValue"
+            [costOfBuying]="stepOne.costOfBuying"></mortgage-step-two-output>
+    </div>
+
+</form>

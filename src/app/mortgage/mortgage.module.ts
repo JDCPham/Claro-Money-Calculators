@@ -26,9 +26,11 @@ import { MortgageStepComponent } from './components/mortgage-stepper/mortgage-st
 import { MortgageLineComponent } from './components/mortgage-stepper/mortgage-line/mortgage-line.component';
 import { MortgageLabelComponent } from './components/mortgage-stepper/mortgage-label/mortgage-label.component';
 import { MortgageStepOneComponent } from './components/mortgage-step-one/mortgage-step-one/mortgage-step-one.component';
-import { MortgageStepTwoComponent } from './components/mortgage-step-two/mortgage-step-two.component';
+import { MortgageStepTwoComponent } from './components/mortgage-step-two/mortgage-step-two/mortgage-step-two.component';
 import { MortgageStepThreeComponent } from './components/mortgage-step-three/mortgage-step-three.component';
 import { MortgageStepOneOutputComponent } from './components/mortgage-step-one/mortgage-step-one-output/mortgage-step-one-output.component';
+import { SharedModule } from '../shared/shared.module';
+import { MortgageStepTwoOutputComponent } from './components/mortgage-step-two/mortgage-step-two-output/mortgage-step-two-output.component';
 ;
 
 
@@ -39,7 +41,8 @@ import { MortgageStepOneOutputComponent } from './components/mortgage-step-one/m
         MatSliderModule,
         AlertModule,
         NgxEchartsModule,
-        MortgageRoutingModule
+        MortgageRoutingModule,
+        SharedModule
     ],
     declarations: [
         MortgageComponent,
@@ -50,7 +53,8 @@ import { MortgageStepOneOutputComponent } from './components/mortgage-step-one/m
         MortgageStepOneComponent,
         MortgageStepTwoComponent,
         MortgageStepThreeComponent,
-        MortgageStepOneOutputComponent
+        MortgageStepOneOutputComponent,
+        MortgageStepTwoOutputComponent
     ],
     exports: [
         CommonModule,

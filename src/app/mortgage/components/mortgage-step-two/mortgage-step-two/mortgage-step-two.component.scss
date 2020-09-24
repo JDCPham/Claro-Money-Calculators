@@ -1,0 +1,56 @@
+@import "~src/styles/custom";
+
+/******************/
+/***** GLOBAL *****/
+/******************/
+
+label, h1, input {
+    font-family: 'Gilroy', sans-serif;
+}
+
+h1 {
+    color: $primaryA;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 32px;
+}
+
+label {
+    margin: 0;
+}
+
+
+
+/******************/
+/***** XSMALL *****/
+/******************/
+@media only screen and (min-width: $breakpoint-xs) {
+
+
+}
+
+/******************/
+/***** SMALL ******/
+/******************/
+@media only screen and (min-width: $breakpoint-sm) {
+
+}
+
+/******************/
+/***** MEDIUM *****/
+/******************/
+@media only screen and (min-width: $breakpoint-md) {
+}
+
+/******************/
+/***** LARGE ******/
+/******************/
+@media only screen and (min-width: $breakpoint-lg) {
+
+}
+
+/******************/
+/***** XLARGE *****/
+/******************/
+@media only screen and (min-width: $breakpoint-xl) {
+}
