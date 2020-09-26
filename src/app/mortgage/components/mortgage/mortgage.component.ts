@@ -2,6 +2,7 @@ import { AbstractType, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { MortgageStepOne } from 'src/app/shared/models/mortgage-step-one-output.model';
+import { MortgageStepTwo } from 'src/app/shared/models/mortgage-step-two-output.model';
 import { MortgageStep } from '../../enums/mortgage-step.enum';
 
 @Component({
@@ -16,6 +17,7 @@ export class MortgageComponent implements OnInit {
 
     /** Step Data **/
     public stepOne: MortgageStepOne = new MortgageStepOne();
+    public stepTwo: MortgageStepTwo = new MortgageStepTwo();
 
 
     constructor() { }
@@ -26,6 +28,11 @@ export class MortgageComponent implements OnInit {
     /** Submissions **/
     public submitStepOne(data: MortgageStepOne): void {
         this.stepOne = data;
+        this.step++;
+    }
+
+    public submitStepTwo(data: MortgageStepTwo): void {
+        this.stepTwo = data;
         this.step++;
     }
 

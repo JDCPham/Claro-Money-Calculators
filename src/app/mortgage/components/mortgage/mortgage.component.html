@@ -7,8 +7,27 @@
     </div>
 
     <div class="container mt-5">
-        <mortgage-step-one *ngIf="step == 0" (submit)="submitStepOne($event)"></mortgage-step-one>
-        <mortgage-step-two *ngIf="step == 1" [stepOne]="stepOne"></mortgage-step-two>
+
+        <!-- Step One -->
+        <mortgage-step-one 
+            *ngIf="step == 0"
+            (submit)="submitStepOne($event)">
+        </mortgage-step-one>
+
+        <!-- Step Two -->
+        <mortgage-step-two
+            *ngIf="step == 1"
+            [stepOne]="stepOne"
+            (submit)="submitStepTwo($event)">
+        </mortgage-step-two>
+
+         <!-- Step Three -->
+         <mortgage-step-three
+            *ngIf="step == 2"
+            [stepOne]="stepOne"
+            [stepTwo]="stepTwo">
+        </mortgage-step-three>
+
     </div>
 
 </div>

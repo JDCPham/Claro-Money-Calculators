@@ -12,10 +12,10 @@
              <div class="form-group mt-2">
                 <label class="mb-2">What are your savings</label>
                 <div class="input-container">
-                    <input type="number" class="form-control input-absolute">
+                    <input inputmode="numeric" class="form-control input-absolute" formControlName="savings" (blur)="formatSavings()">
                     <div class="input-icon">£</div>
                 </div>  
-                <!-- <small *ngIf="propertyValueInvalid">{{errorMessage(propertyValue.errors)}}</small> -->
+                <small *ngIf="savingsInvalid">{{errorMessage(savings.errors)}}</small>
             </div>
 
             <!-- Input: Next -->
@@ -23,6 +23,11 @@
                 <div class="col-8 offset-4">
                     <button type="button" class="btn btn-primary w-100" [disabled]="!isFormValid" (click)="next()">Next</button>
                 </div>
+            </div>
+
+             <!-- Alert: Error -->
+            <div *ngIf="error != null" class="alert alert-danger mt-4 p-4" role="alert">
+                {{error}}
             </div>
 
         </div>

@@ -1,0 +1,130 @@
+<form class="row" [formGroup]="form">
+
+    <!-- Input -->
+    <div class="col-12 col-md-6">
+
+        <div class="d-flex flex-column">
+
+            <!-- Input: Title -->
+            <h1>Monthly savings</h1>
+
+            <!-- Input: Include Other Fees? -->
+            <div class="form-group mt-2">
+                <label class="mb-2">Do you know how much you need to save each month?</label>
+                <div class="row">
+                    <div class="col-6 pr-2">
+                        <button
+                            type="button"
+                            class="btn w-100"
+                            [class.btn-outline-secondary]="!monthlySavingsKnown"
+                            [class.btn-secondary]="monthlySavingsKnown === true"
+                            (click)="setMonthlySavingsKnown(true)">
+                            Yes
+                        </button>
+                    </div>
+                    <div class="col-6 pl-2">
+                        <button
+                            type="button"
+                            class="btn w-100"
+                            [class.btn-outline-secondary]="monthlySavingsKnown || monthlySavingsKnown == null"
+                            [class.btn-secondary]="monthlySavingsKnown === false"
+                            (click)="setMonthlySavingsKnown(false)">
+                            No
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input: Income -->
+            <div *ngIf="monthlySavingsKnown === false" class="form-group mt-2">
+                <label class="mb-2">Income</label>
+                <div class="input-container">
+                    <input inputmode="numeric" class="form-control input-absolute" formControlName="income" (blur)="formatCurrency('income')">
+                    <div class="input-icon">£</div>
+                </div>  
+                <small *ngIf="incomeInvalid">{{errorMessage(income.errors)}}</small>
+            </div>
+
+            <!-- Input: Rent -->
+            <div *ngIf="monthlySavingsKnown === false" class="form-group mt-2">
+                <label class="mb-2">Rent</label>
+                <div class="input-container">
+                    <input inputmode="numeric" class="form-control input-absolute" formControlName="rent" (blur)="formatCurrency('rent')">
+                    <div class="input-icon">£</div>
+                </div>  
+                <small *ngIf="rentInvalid">{{errorMessage(rent.errors)}}</small>
+            </div>
+
+            <!-- Input: Utilities -->
+            <div *ngIf="monthlySavingsKnown === false" class="form-group mt-2">
+                <label class="mb-2">Utilities</label>
+                <div class="input-container">
+                    <input inputmode="numeric" class="form-control input-absolute" formControlName="utilities" (blur)="formatCurrency('utilities')">
+                    <div class="input-icon">£</div>
+                </div>  
+                <small *ngIf="utilitiesInvalid">{{errorMessage(utilities.errors)}}</small>
+            </div>
+
+            <!-- Input: Subscriptions -->
+            <div *ngIf="monthlySavingsKnown === false" class="form-group mt-2">
+                <label class="mb-2">Subscriptions</label>
+                <div class="input-container">
+                    <input inputmode="numeric" class="form-control input-absolute" formControlName="subscriptions" (blur)="formatCurrency('subscriptions')">
+                    <div class="input-icon">£</div>
+                </div>  
+                <small *ngIf="subscriptionsInvalid">{{errorMessage(subscriptions.errors)}}</small>
+            </div>
+
+            <!-- Input: Family -->
+            <div *ngIf="monthlySavingsKnown === false" class="form-group mt-2">
+                <label class="mb-2">Family</label>
+                <div class="input-container">
+                    <input inputmode="numeric" class="form-control input-absolute" formControlName="family" (blur)="formatCurrency('family')">
+                    <div class="input-icon">£</div>
+                </div>  
+                <small *ngIf="familyInvalid">{{errorMessage(family.errors)}}</small>
+            </div>
+
+            <!-- Input: Leisure -->
+            <div *ngIf="monthlySavingsKnown === false" class="form-group mt-2">
+                <label class="mb-2">Leisure</label>
+                <div class="input-container">
+                    <input inputmode="numeric" class="form-control input-absolute" formControlName="leisure" (blur)="formatCurrency('leisure')">
+                    <div class="input-icon">£</div>
+                </div>  
+                <small *ngIf="leisureInvalid">{{errorMessage(leisure.errors)}}</small>
+            </div>
+
+            <!-- Input: Other -->
+            <div *ngIf="monthlySavingsKnown === false" class="form-group mt-2">
+                <label class="mb-2">Other</label>
+                <div class="input-container">
+                    <input inputmode="numeric" class="form-control input-absolute" formControlName="other" (blur)="formatCurrency('other')">
+                    <div class="input-icon">£</div>
+                </div>  
+                <small *ngIf="otherInvalid">{{errorMessage(other.errors)}}</small>
+            </div>
+
+            <!-- Input: Next -->
+            <div class="row mt-3">
+                <div class="col-8 offset-4">
+                    <button type="button" class="btn btn-primary w-100" [disabled]="!isFormValid || monthlySavingsKnown == null">Next</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Output -->
+    <div class="col-12 col-md-6">
+        <mortgage-step-three-output
+            [fees]="stepOne.fees"
+            [deposit]="stepOne.depositValue"
+            [costOfBuying]="stepOne.costOfBuying"
+            [goalSavingAmount]="stepTwo.goalSavingAmount">
+        </mortgage-step-three-output>
+    </div>
+
+</form>

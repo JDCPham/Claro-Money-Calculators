@@ -12,7 +12,7 @@
             <div class="form-group mt-2">
                 <label class="mb-2">Property Value</label>
                 <div class="input-container">
-                    <input type="number" class="form-control input-absolute" formControlName="propertyValue" (blur)="formatPropertyValue()">
+                    <input inputmode="numeric" class="form-control input-absolute" formControlName="propertyValue" (blur)="formatPropertyValue()">
                     <div class="input-icon">£</div>
                 </div>  
                 <small *ngIf="propertyValueInvalid">{{errorMessage(propertyValue.errors)}}</small>
@@ -22,7 +22,7 @@
             <div class="form-group mt-2">
                 <label class="mb-2">Deposit Value</label>
                 <div class="input-container">
-                    <input type="number" class="form-control input-absolute" formControlName="depositValue" (blur)="formatDepositValue()">
+                    <input inputmode="numeric" class="form-control input-absolute" formControlName="depositValue" (blur)="formatDepositValue()">
                     <div class="input-icon">%</div>
                 </div>
                 <small *ngIf="depositValueInvalid">{{errorMessage(depositValue.errors)}}</small>
@@ -65,7 +65,7 @@
             <div *ngIf="otherFees != null" class="form-group mt-2">
                 <label class="mb-2">Stamp Duty</label>
                 <div class="input-container">
-                    <input type="number" class="form-control input-absolute" formControlName="stampDuty" (blur)="formatStampDuty()">
+                    <input inputmode="numeric" class="form-control input-absolute" formControlName="stampDuty" (blur)="formatStampDuty()">
                     <div class="input-icon">£</div>
                 </div>
                 <small *ngIf="stampDutyInvalid">{{errorMessage(stampDuty.errors)}}</small>
@@ -75,7 +75,7 @@
             <div *ngIf="otherFees != null" class="form-group mt-2">
                 <label class="mb-2">Legal Fees</label>
                 <div class="input-container">
-                    <input type="number" class="form-control input-absolute" formControlName="legalFees" (blur)="formatLegalFees()">
+                    <input inputmode="numeric" class="form-control input-absolute" formControlName="legalFees" (blur)="formatLegalFees()">
                     <div class="input-icon">£</div>
                 </div>
                 <small *ngIf="legalFeesInvalid">{{errorMessage(legalFees.errors)}}</small>
@@ -85,17 +85,17 @@
             <div *ngIf="otherFees != null" class="form-group mt-2">
                 <label class="mb-2">Mortgage Broker Fees</label>
                 <div class="input-container">
-                    <input type="number" class="form-control input-absolute" formControlName="mortgageBrokerFees" (blur)="formatMortgageBrokerFees()">
+                    <input inputmode="numeric" class="form-control input-absolute" formControlName="mortgageBrokerFees" (blur)="formatMortgageBrokerFees()">
                     <div class="input-icon">£</div>
                 </div>
-                <small *ngIf="morgageBrokerFeesInvalid">{{errorMessage(mortgageBrokerFees.errors)}}</small>
+                <small *ngIf="mortgageBrokerFeesInvalid">{{errorMessage(mortgageBrokerFees.errors)}}</small>
             </div>
 
             <!-- Input: Mortgage Costs -->
             <div *ngIf="otherFees != null" class="form-group mt-2">
                 <label class="mb-2">Mortgage Costs</label>
                 <div class="input-container">
-                    <input type="number" class="form-control input-absolute" formControlName="mortgageCosts" (blur)="formatMortgageCosts()">
+                    <input inputmode="numeric" class="form-control input-absolute" formControlName="mortgageCosts" (blur)="formatMortgageCosts()">
                     <div class="input-icon">£</div>
                 </div>
                 <small *ngIf="mortgageCostsInvalid">{{errorMessage(mortgageCosts.errors)}}</small>
@@ -104,7 +104,7 @@
             <!-- Input: Next -->
             <div class="row mt-3">
                 <div class="col-8 offset-4">
-                    <button type="button" class="btn btn-primary w-100" [disabled]="!isFormValid" (click)="next()">Next</button>
+                    <button type="button" class="btn btn-primary w-100" [disabled]="!isFormValid || otherFees == null" (click)="next()">Next</button>
                 </div>
             </div>
 
