@@ -100,7 +100,7 @@ export class MortgageStepThreeComponent implements OnInit {
 
       // Set specified flag.
       let specified: boolean = this.monthlySavingsKnown == null ? null : !this.monthlySavingsKnown;
-
+      console.log("SPECIFIED: " + specified)
       // Create result object.
       const result: MortgageStepThree = new MortgageStepThree(
         CurrJS(this.income.value).value,

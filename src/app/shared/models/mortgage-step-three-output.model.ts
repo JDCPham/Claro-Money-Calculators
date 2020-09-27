@@ -19,6 +19,7 @@ export class MortgageStepThree {
         this.family = family;
         this.leisure = leisure;
         this.other = other;
+        this.specified = specified;
 
     }
 

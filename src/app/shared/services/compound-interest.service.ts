@@ -13,7 +13,12 @@ export class CompoundInterestService {
   constructor() { }
 
 
-  public calculateInterest(initialAmount: number = 0, monthlyDeposit: number = 0, interestRate: number = 1, years: number = 0): any {
+  public calculateInterestByMonth(
+    initialAmount: number = 0,
+    monthlyDeposit: number = 0,
+    interestRate: number = 1,
+    months: number = 1
+  ): any {
 
     // Convert Interest Rate into Decimal.
     interestRate = interestRate / 100;
@@ -28,8 +33,8 @@ export class CompoundInterestService {
 
     // Generate number of years.
     const savingsPeriod: Period = {
-      years: years,
-      months: years * 12
+      years: months / 12,
+      months: months
     };
 
     // Create empty array to store results.
@@ -38,7 +43,6 @@ export class CompoundInterestService {
     // Add Initial Month (Month 0).
     results.push(CompoundInterestService.generateInitialMonthResult(initialAmount));
 
-    // Calculate for each month for number of months specified by user.
     for (let i = 1; i <= savingsPeriod.months; i++) {
 
       // Gather required data.
@@ -83,23 +87,17 @@ export class CompoundInterestService {
       results.push(monthRow)
     }
 
-    // console.log(results)
-
     // Get Last Row.
     const lastRow: MonthlyInterestResult = results[results.length - 1];
 
     return lastRow.amount.compound;
 
-    // // Set Final Results.
-    // this.results.amount = {
-    //     compound: lastRow.amount.compound,
-    //     simple: lastRow.amount.simple
-    // }
+  }
 
-    // this.results.interest = {
-    //     compound: lastRow.interest.compound,
-    //     simple: lastRow.interest.simple
-    // }
+
+  public calculateInterest(initialAmount: number = 0, monthlyDeposit: number = 0, interestRate: number = 1, years: number = 0): any {
+
+    return this.calculateInterestByMonth(initialAmount, monthlyDeposit, interestRate, years * 12);
 
   }
 
