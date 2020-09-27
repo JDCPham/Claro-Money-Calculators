@@ -1,7 +1,8 @@
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MortgageStepOne, MortgageStepThree, MortgageStepTwo } from 'src/app/shared';
+import { FieldFormatterService, MortgageStepOne, MortgageStepThree, MortgageStepTwo } from 'src/app/shared';
+import * as CurrJS from 'currency.js';
 
 @Component({
   selector: 'mortgage-step-four',
@@ -30,11 +31,13 @@ export class MortgageStepFourComponent implements OnInit {
   public isLoading: boolean = false;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private fieldFormatterService: FieldFormatterService
   ) { }
 
   ngOnInit() {
     this.form = this.buildForm();
+    this.setEventListeners();
   }
 
 
@@ -54,15 +57,42 @@ export class MortgageStepFourComponent implements OnInit {
 
     return this.formBuilder.group({
       affordToSaveMonthly: [{ value: monthlySavings, disabled: false }, [Validators.required, Validators.pattern(this.currencyPattern)]],
-      rent: [{ value: null, disabled: false }, [Validators.required, Validators.pattern(this.currencyPattern)]]
+      desiredTimeOfPurchase: [{ value: null, disabled: false }, [Validators.required]]
     })
 
+  }
+
+  public updateAffordToSaveMonthly(event: FocusEvent): void {
+
+    const value: any = event.target['value'];
+
+    try {
+      this.form.patchValue({ affordToSaveMonthly: this.fieldFormatterService.currency(value)})
+    } catch (error) {
+      this.form.patchValue({ affordToSaveMonthly: 0 })
+    }
+    console.log(event.target['value'])
+  }
+
+  public setEventListeners(): void {
+    this.affordToSaveMonthly.valueChanges.subscribe(data => {
+      console.log(data);
+      this.patchDesiredTimeOfPurchase(CurrJS(data).multiply(2).value)
+    })
+  }
+
+  public patchDesiredTimeOfPurchase(value: any): void {
+    this.desiredTimeOfPurchase.patchValue(value);
   }
 
 
   /* Form Getters */
   get affordToSaveMonthly(): AbstractControl {
     return this.form.get('affordToSaveMonthly');
+  }
+
+  get desiredTimeOfPurchase(): AbstractControl {
+    return this.form.get('desiredTimeOfPurchase');
   }
 
 }

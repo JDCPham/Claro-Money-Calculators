@@ -12,7 +12,7 @@
             <div class="form-group mt-2">
                 <label class="mb-2">Afford to save each month</label>
                 <div class="input-container">
-                    <input inputmode="numeric" class="form-control input-absolute" [value]="affordToSaveMonthly.value">
+                    <input inputmode="numeric" class="form-control input-absolute" [value]="affordToSaveMonthly.value" (blur)="updateAffordToSaveMonthly($event)">
                     <div class="input-icon">£</div>
                 </div>
                 <!-- <small *ngIf="incomeInvalid">{{errorMessage(income.errors)}}</small> -->
@@ -27,7 +27,7 @@
             <div class="form-group mt-2">
                 <label class="mb-2">Desired time of purchase</label>
                 <div class="input-container">
-                    <input inputmode="numeric" class="form-control input-absolute">
+                    <input inputmode="numeric" class="form-control input-absolute" formControlName="desiredTimeOfPurchase">
                     <div class="input-icon">M</div>
                 </div>
                 <!-- <small *ngIf="incomeInvalid">{{errorMessage(income.errors)}}</small> -->
@@ -35,7 +35,7 @@
 
             <!-- User Input: Goal Time Period -->
             <div class="form-group">
-                <mat-slider min="1" max="100" step="1" value="18" style="width: 100%"></mat-slider>
+                <mat-slider min="1" max="100" step="1" value="18" style="width: 100%" formControlName="desiredTimeOfPurchase"></mat-slider>
             </div>
 
             <!-- Alert: Error -->
