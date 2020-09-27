@@ -1,9 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MortgageStepOne, ValidateNumber } from 'src/app/shared';
+import { MortgageStepThree } from 'src/app/shared/models/mortgage-step-three-output.model';
 import { MortgageStepTwo } from 'src/app/shared/models/mortgage-step-two-output.model';
 import { ErrorMessageService } from 'src/app/shared/services/error-message.service';
 import { FieldFormatterService } from 'src/app/shared/services/field-formatter.service';
+import * as CurrJS from 'currency.js';
 
 @Component({
   selector: 'mortgage-step-three',
@@ -28,6 +30,13 @@ export class MortgageStepThreeComponent implements OnInit {
   /** Flags **/
   public isLoading: boolean = false;
   public monthlySavingsKnown: boolean = null;
+
+  /** Error **/
+  public error: string = null;
+
+  /** Outputs **/
+  @Output()
+  public submit: EventEmitter<MortgageStepThree> = new EventEmitter<MortgageStepThree>();
 
   /** **/
   public defaultValues: any = {
@@ -76,9 +85,65 @@ export class MortgageStepThreeComponent implements OnInit {
 
   }
 
+
   public errorMessage(errors: any): string {
     return this.errorMessageService.getErrorMessage(errors);
   };
+
+
+  public next(): void {
+
+    // Set loading flag.
+    this.isLoading = true;
+
+    try {
+
+      // Set specified flag.
+      let specified: boolean = this.monthlySavingsKnown == null ? null : !this.monthlySavingsKnown;
+
+      // Create result object.
+      const result: MortgageStepThree = new MortgageStepThree(
+        CurrJS(this.income.value).value,
+        CurrJS(this.rent.value).value,
+        CurrJS(this.utilities.value).value,
+        CurrJS(this.subscriptions.value).value,
+        CurrJS(this.family.value).value,
+        CurrJS(this.leisure.value).value,
+        CurrJS(this.other.value).value,
+        specified
+      );
+
+      // Check if expenses greater than income.
+      if (!result.enoughIncome) {
+
+        // Set error message.
+        this.error = "Expenses are greater than income."
+
+        // Return from function.
+        return;
+
+      } else {
+
+        // Remove any existing error message.
+        this.error = null;
+
+      }
+
+      // Emit output.
+      this.submit.emit(result);
+
+
+    } catch (error) {
+
+      // Set error.
+      this.error = 'There was an error, please check your input fields';
+
+      // Set loading flag.
+      this.isLoading = false; 
+
+    }
+  }
+
 
   /* Field Formatters */
   public formatCurrency(field: string): void {
@@ -89,6 +154,7 @@ export class MortgageStepThreeComponent implements OnInit {
 
     this.form.patchValue(patch)
   }
+
 
   /* Getters & Setters */
   get isFormValid(): boolean {
@@ -103,6 +169,7 @@ export class MortgageStepThreeComponent implements OnInit {
     return false;
 
   }
+
 
   /* Form Validity */
   get incomeInvalid(): boolean {

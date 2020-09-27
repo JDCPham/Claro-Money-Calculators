@@ -32,6 +32,8 @@ import { MortgageStepOneOutputComponent } from './components/mortgage-step-one/m
 import { SharedModule } from '../shared/shared.module';
 import { MortgageStepTwoOutputComponent } from './components/mortgage-step-two/mortgage-step-two-output/mortgage-step-two-output.component';
 import { MortgageStepThreeOutputComponent } from './components/mortgage-step-three/mortgage-step-three-output/mortgage-step-three-output.component';
+import { MortgageStepFourComponent } from './components/mortgage-step-four/mortgage-step-four/mortgage-step-four.component';
+import { MortgageStepFourOutputComponent } from './components/mortgage-step-four/mortgage-step-four-output/mortgage-step-four-output.component';
 ;
 
 
@@ -56,7 +58,9 @@ import { MortgageStepThreeOutputComponent } from './components/mortgage-step-thr
         MortgageStepThreeComponent,
         MortgageStepOneOutputComponent,
         MortgageStepTwoOutputComponent,
-        MortgageStepThreeOutputComponent
+        MortgageStepThreeOutputComponent,
+        MortgageStepFourComponent,
+        MortgageStepFourOutputComponent
     ],
     exports: [
         CommonModule,

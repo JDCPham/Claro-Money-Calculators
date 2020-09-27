@@ -105,10 +105,15 @@
                 <small *ngIf="otherInvalid">{{errorMessage(other.errors)}}</small>
             </div>
 
+            <!-- Alert: Error -->
+            <div *ngIf="error != null" class="alert alert-danger mt-4 p-4" role="alert">
+                {{error}}
+            </div>
+
             <!-- Input: Next -->
             <div class="row mt-3">
                 <div class="col-8 offset-4">
-                    <button type="button" class="btn btn-primary w-100" [disabled]="!isFormValid || monthlySavingsKnown == null">Next</button>
+                    <button type="button" class="btn btn-primary w-100" [disabled]="!isFormValid || monthlySavingsKnown == null" (click)="next()">Next</button>
                 </div>
             </div>
 
