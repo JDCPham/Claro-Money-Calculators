@@ -65,7 +65,7 @@ export class CompoundInterestService {
       }
 
       // Generate and round only this (and total) monthly interest amounts.
-      const interest2: any = {
+      const accruedInterest: any = {
         compound: {
           monthly: CurrJS(interestResult.monthlyInterestAmount.compound).value,
           total: CurrJS(results[i - 1].interest.compound.total + interestResult.monthlyInterestAmount.compound).value
@@ -80,12 +80,16 @@ export class CompoundInterestService {
       const monthRow: MonthlyInterestResult = {
         month: i,
         amount: amount,
-        interest: interest2
+        interest: accruedInterest
       };
 
       // Add row to array.
       results.push(monthRow)
     }
+
+    console.log(results)
+
+    return results;
 
     // Get Last Row.
     const lastRow: MonthlyInterestResult = results[results.length - 1];

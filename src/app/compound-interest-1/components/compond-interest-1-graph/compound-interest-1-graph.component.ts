@@ -1,5 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
+import { MonthlyInterestResult } from 'src/app/shared';
 import { SimpleCompoundInterestResult } from '../../models';
 import { SimpleVsCompoundInterestCalculatorService } from '../../services';
 
@@ -13,7 +14,7 @@ export class CompoundInterest1GraphComponent implements OnInit {
     public options: any;
 
     @Input()
-    public updated: EventEmitter<SimpleCompoundInterestResult>;
+    public updated: EventEmitter<Array<MonthlyInterestResult>>;
 
     constructor(private calculatorService: SimpleVsCompoundInterestCalculatorService) { }
 
@@ -23,21 +24,23 @@ export class CompoundInterest1GraphComponent implements OnInit {
     }
 
     public onChartInit(event: any): void {
-        this.updateChartData()
+        this.updateChartData(null)
     }
 
     private setDataUpdateEventListener(): void {
-        this.updated.subscribe(() => {
-            this.updateChartData();
-            
+        this.updated.subscribe((results: Array<MonthlyInterestResult>) => {
+            this.updateChartData(results);
+
         })
     }
 
-    private updateChartData(): void {
-        const data: SimpleCompoundInterestResult = this.calculatorService.results;
-        const compoundInterestAmountData: Array<[number, number]> = data.detailed.map(result => [result.month, result.amount.compound.rounded]);
-        const simpleInterestAmountData: Array<[number, number]> = data.detailed.map(result => [result.month, result.amount.simple.rounded]);
-        this.setChartOptions(compoundInterestAmountData, simpleInterestAmountData)
+    private updateChartData(results: Array<MonthlyInterestResult>): void {
+        try {
+            if (results == null) return;
+            const compoundInterestAmountData: Array<[number, number]> = results.map(result => [result.month, result.amount.compound.rounded]);
+            const simpleInterestAmountData: Array<[number, number]> = results.map(result => [result.month, result.amount.simple.rounded]);
+            this.setChartOptions(compoundInterestAmountData, simpleInterestAmountData)
+        } catch {};
     }
 
     private setChartOptions(
@@ -90,5 +93,5 @@ export class CompoundInterest1GraphComponent implements OnInit {
         }
     }
 
-    
+
 }

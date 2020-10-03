@@ -45,9 +45,40 @@ export class FieldFormatterService {
 
   }
 
+  public integer(value: any): string {
+
+    try {
+
+      // Check is a number, otherwise throw error.
+      if (!this.checkInteger(value)) throw Error();
+
+      // Parse value into float.
+      const parsed: number = parseInt(value);
+
+      // If value is less than 0, set to 0.
+      if (parsed < 1) return '1';
+
+      // Return value as a string.
+      return parsed.toString();
+
+    } catch (error) {
+
+      // Return null.
+      return null;
+
+    }
+
+
+  }
+
 
   private checkFloat(value: any): boolean {
     try { if (isNaN(parseFloat(value))) return false; else return true; }
+    catch (error) { return false; }
+  }
+
+  private checkInteger(value: any): boolean {
+    try { if (isNaN(parseInt(value))) return false; else return true; }
     catch (error) { return false; }
   }
 
