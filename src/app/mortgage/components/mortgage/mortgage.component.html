@@ -1,0 +1,42 @@
+<div class="d-flex flex-column align-items-center">
+
+    <div class="d-flex flex-column align-items-center header">
+        <h1>Mortgage Saving Goal Calculator</h1>
+        <p class="mt-3">Complete our mortgage saving goal calculator to help you gain a better understanding of how much you need to save and for how long!</p>
+        <mortgage-stepper [step]="step" class="stepper mt-5"></mortgage-stepper>
+    </div>
+
+    <div class="container mt-5">
+
+        <!-- Step One -->
+        <mortgage-step-one 
+            *ngIf="step == 0"
+            (submit)="submitStepOne($event)">
+        </mortgage-step-one>
+
+        <!-- Step Two -->
+        <mortgage-step-two
+            *ngIf="step == 1"
+            [stepOne]="stepOne"
+            (submit)="submitStepTwo($event)">
+        </mortgage-step-two>
+
+         <!-- Step Three -->
+         <mortgage-step-three
+            *ngIf="step == 2"
+            [stepOne]="stepOne"
+            [stepTwo]="stepTwo"
+            (submit)="submitStepThree($event)">
+        </mortgage-step-three>
+
+        <!-- Step Four -->
+        <mortgage-step-four
+            *ngIf="step == 3"
+            [stepOne]="stepOne"
+            [stepTwo]="stepTwo"
+            [stepThree]="stepThree">
+        </mortgage-step-four>
+
+    </div>
+
+</div>

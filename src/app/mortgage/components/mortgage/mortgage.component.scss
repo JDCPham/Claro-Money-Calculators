@@ -1,0 +1,72 @@
+@import "~src/styles/custom";
+
+/******************/
+/***** GLOBAL *****/
+/******************/
+h1 {
+    color: $grayscaleF;
+    font-size: 32px;
+    font-family: 'Gilroy', sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+p {
+    margin: 0;
+    text-align: center;
+    font-family: 'Gilroy', sans-serif;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+
+
+/******************/
+/***** XSMALL *****/
+/******************/
+@media only screen and (min-width: $breakpoint-xs) {
+
+    .header {
+        width: 100%;
+    }
+
+    .stepper {
+        width: 100%;
+    }
+
+}
+
+/******************/
+/***** SMALL ******/
+/******************/
+@media only screen and (min-width: $breakpoint-sm) {
+
+    .header {
+        width: 540px
+    }
+
+    .stepper {
+        width: 520px;
+    }
+
+}
+
+/******************/
+/***** MEDIUM *****/
+/******************/
+@media only screen and (min-width: $breakpoint-md) {
+}
+
+/******************/
+/***** LARGE ******/
+/******************/
+@media only screen and (min-width: $breakpoint-lg) {
+
+}
+
+/******************/
+/***** XLARGE *****/
+/******************/
+@media only screen and (min-width: $breakpoint-xl) {
+}

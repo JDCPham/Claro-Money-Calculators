@@ -1,0 +1,67 @@
+@import '~src/styles/custom';
+
+/******************/
+/***** GLOBAL *****/
+/******************/
+
+.output {
+    width: 100%;
+    background-color: $tertiaryA;
+    border-radius: 12px;
+}
+
+label, h1, p {
+    font-family: 'Gilroy', sans-serif;
+    margin: 0;
+}
+
+label {
+    font-size: 16px;
+    line-height: 26px;
+    color: $grayscaleF;
+}
+
+h1 {
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: bolder;
+    color: $grayscaleF;
+}
+
+.inline-label {
+    width: 80px;
+}
+
+
+/******************/
+/***** XSMALL *****/
+/******************/
+@media only screen and (min-width: $breakpoint-xs) {
+
+}
+
+/******************/
+/***** SMALL ******/
+/******************/
+@media only screen and (min-width: $breakpoint-sm) {
+
+}
+
+/******************/
+/***** MEDIUM *****/
+/******************/
+@media only screen and (min-width: $breakpoint-md) {
+}
+
+/******************/
+/***** LARGE ******/
+/******************/
+@media only screen and (min-width: $breakpoint-lg) {
+
+}
+
+/******************/
+/***** XLARGE *****/
+/******************/
+@media only screen and (min-width: $breakpoint-xl) {
+}

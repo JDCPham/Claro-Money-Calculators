@@ -1,0 +1,17 @@
+@import '~src/styles/custom.scss';
+
+.line {
+    width: 100%;
+    height: 2px;
+    background-color: $primaryA;
+    align-self: center;
+    justify-self: center; 
+}
+
+.active {
+    opacity: 1;
+}
+
+.inactive {
+    opacity: 0.5;
+}

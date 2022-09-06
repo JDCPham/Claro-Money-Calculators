@@ -1,0 +1,32 @@
+@import '~src/styles/custom.scss';
+
+.step {
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+}
+
+.dot {
+    display: flex;
+    border-radius: 50%;
+    height: 48px;
+    width: 48px;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-family: 'Gilroy', sans-serif;
+}
+
+.active {
+    background-color: $primaryA;
+    color: #FFFFFF;
+    opacity: 1;
+}
+
+.inactive {
+    background-color: #FFFFFF;
+    color: $primaryA;
+    border: 2px solid $primaryA;
+    opacity: 0.5;
+}

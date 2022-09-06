@@ -1,0 +1,126 @@
+<form class="row" [formGroup]="form">
+
+    <!-- Input -->
+    <div class="col-12 col-md-6">
+
+        <div class="d-flex flex-column">
+
+            <!-- Input: Title -->
+            <h1>Cost of buying</h1>
+
+            <!-- Input: Property Value -->
+            <div class="form-group mt-2">
+                <label class="mb-2">Property Value</label>
+                <div class="input-container">
+                    <input inputmode="numeric" class="form-control input-absolute" formControlName="propertyValue" (blur)="formatPropertyValue()">
+                    <div class="input-icon">£</div>
+                </div>  
+                <small *ngIf="propertyValueInvalid">{{errorMessage(propertyValue.errors)}}</small>
+            </div>
+
+            <!-- Input: Deposit Value -->
+            <div class="form-group mt-2">
+                <label class="mb-2">Deposit Value</label>
+                <div class="input-container">
+                    <input inputmode="numeric" class="form-control input-absolute" formControlName="depositValue" (blur)="formatDepositValue()">
+                    <div class="input-icon">%</div>
+                </div>
+                <small *ngIf="depositValueInvalid">{{errorMessage(depositValue.errors)}}</small>
+            </div>
+
+
+            <!-- Input: Include Other Fees? -->
+            <div class="form-group mt-2">
+                <label class="mb-2">Include other fees?</label>
+                <div class="row">
+                    <div class="col-6 pr-2">
+                        <button
+                            type="button"
+                            class="btn w-100"
+                            [class.btn-outline-secondary]="!otherFees"
+                            [class.btn-secondary]="otherFees === true"
+                            (click)="setOtherFees(true)">
+                            Yes
+                        </button>
+                    </div>
+                    <div class="col-6 pl-2">
+                        <button
+                            type="button"
+                            class="btn w-100"
+                            [class.btn-outline-secondary]="otherFees || otherFees == null"
+                            [class.btn-secondary]="otherFees === false"
+                            (click)="setOtherFees(false)">
+                            No
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alert: -->
+            <div *ngIf="otherFees === false" class="alert alert-secondary mt-2 p-4" role="alert">
+                We have pre filled the fees boxes based on what we think they’ll be to give you an idea, you can still amend
+            </div>
+
+            <!-- Input: Stamp Duty -->
+            <div *ngIf="otherFees != null" class="form-group mt-2">
+                <label class="mb-2">Stamp Duty</label>
+                <div class="input-container">
+                    <input inputmode="numeric" class="form-control input-absolute" formControlName="stampDuty" (blur)="formatStampDuty()">
+                    <div class="input-icon">£</div>
+                </div>
+                <small *ngIf="stampDutyInvalid">{{errorMessage(stampDuty.errors)}}</small>
+            </div>
+
+            <!-- Input: Legal Fees -->
+            <div *ngIf="otherFees != null" class="form-group mt-2">
+                <label class="mb-2">Legal Fees</label>
+                <div class="input-container">
+                    <input inputmode="numeric" class="form-control input-absolute" formControlName="legalFees" (blur)="formatLegalFees()">
+                    <div class="input-icon">£</div>
+                </div>
+                <small *ngIf="legalFeesInvalid">{{errorMessage(legalFees.errors)}}</small>
+            </div>
+
+            <!-- Input: Mortgage Broker Fees -->
+            <div *ngIf="otherFees != null" class="form-group mt-2">
+                <label class="mb-2">Mortgage Broker Fees</label>
+                <div class="input-container">
+                    <input inputmode="numeric" class="form-control input-absolute" formControlName="mortgageBrokerFees" (blur)="formatMortgageBrokerFees()">
+                    <div class="input-icon">£</div>
+                </div>
+                <small *ngIf="mortgageBrokerFeesInvalid">{{errorMessage(mortgageBrokerFees.errors)}}</small>
+            </div>
+
+            <!-- Input: Mortgage Costs -->
+            <div *ngIf="otherFees != null" class="form-group mt-2">
+                <label class="mb-2">Mortgage Costs</label>
+                <div class="input-container">
+                    <input inputmode="numeric" class="form-control input-absolute" formControlName="mortgageCosts" (blur)="formatMortgageCosts()">
+                    <div class="input-icon">£</div>
+                </div>
+                <small *ngIf="mortgageCostsInvalid">{{errorMessage(mortgageCosts.errors)}}</small>
+            </div>
+
+            <!-- Input: Next -->
+            <div class="row mt-3">
+                <div class="col-8 offset-4">
+                    <button type="button" class="btn btn-primary w-100" [disabled]="!isFormValid || otherFees == null" (click)="next()">Next</button>
+                </div>
+            </div>
+
+            <!-- Alert: Error -->
+            <div *ngIf="error != null" class="alert alert-danger mt-2 p-4" role="alert">
+                {{error}}
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Output -->
+    <div class="col-12 col-md-6">
+        <mortgage-step-one-output></mortgage-step-one-output>
+    </div>
+
+</form>

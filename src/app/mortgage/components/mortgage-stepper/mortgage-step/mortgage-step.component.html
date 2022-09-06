@@ -1,0 +1,5 @@
+<div class="step">
+    <mortgage-line [active]="active" [style.opacity]="first ? 0 : 1"></mortgage-line>
+    <div [class.active]="active" [class.inactive]="!active" class="dot">{{value}}</div>
+    <mortgage-line [active]="active && !current" [style.opacity]="last ? 0 : 1"></mortgage-line>
+</div>
